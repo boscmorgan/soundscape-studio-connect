@@ -17,16 +17,53 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
             {t.title}
           </h2>
         </div>
-        
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
-          {t.clients.map((client, index) => (
-            <div
-              key={index}
-              className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
-            >
-              {client}
+
+        <div className="space-y-6">
+          {/* Brands Row */}
+          <div className="overflow-hidden">
+            <div className="flex items-center gap-8 md:gap-12 whitespace-nowrap opacity-60 animate-scroll-left">
+              {t.brands.map((client, index) => (
+                <div
+                  key={`brand-${index}`}
+                  className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
+                >
+                  {client}
+                </div>
+              ))}
+              {t.brands.map((client, index) => (
+                <div
+                  key={`brand-dup-${index}`}
+                  aria-hidden="true"
+                  className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
+                >
+                  {client}
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Artists Row */}
+          <div className="overflow-hidden">
+            <div className="flex items-center gap-8 md:gap-12 whitespace-nowrap opacity-60 animate-scroll-right">
+              {t.artists.map((client, index) => (
+                <div
+                  key={`artist-${index}`}
+                  className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
+                >
+                  {client}
+                </div>
+              ))}
+              {t.artists.map((client, index) => (
+                <div
+                  key={`artist-dup-${index}`}
+                  aria-hidden="true"
+                  className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
+                >
+                  {client}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

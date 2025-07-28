@@ -93,52 +93,58 @@ export const heroTranslations = {
 export const trustTranslations = {
   en: {
     title: 'Trusted by artists worldwide',
-    clients: [
-      'Universal Music Group',
-      'Sony Music',
-      'Independent Artists',
-      'Emerging Talents',
-      'Major Labels',
-      'Music Producers',
+    brands: [
+      'Soho House',
+      'Native Instruments',
+      'Nike',
+      'The Greater Goods Co.',
+      'Liverpool Sound City',
+      'Ace Hotel',
+      'Arts Council of England',
+      'RedBull',
+      'Hard Rock',
+      'VICE',
+      'The Hoxton',
+      'Pirate Studios',
+      'Molto Music Group',
+      'pointblank Music School'
+    ],
+    artists: [
       'Pekodjinn',
       'DijahSB',
-      'Brenda & Maria Manuela',
+      'Brenda & MM',
       'Palmaria',
       'Taite Imogen',
       'The Last Skeptik',
-      'Stanzah!',
-      'Native Instruments',
-      'Nike',
-      'Arts Council of England',
-      'RedBull',
-      'pointblank Music School',
-      'The Greater Goods',
-      'Pirate Studios'
+      'Stanzah!'
     ]
   },
   it: {
     title: 'La fiducia di artisti in tutto il mondo',
-    clients: [
-      'Universal Music Group',
-      'Sony Music',
-      'Artisti Indipendenti',
-      'Talenti Emergenti',
-      'Etichette Principali',
-      'Produttori Musicali',
+    brands: [
+      'Soho House',
+      'Native Instruments',
+      'Nike',
+      'The Greater Goods Co.',
+      'Liverpool Sound City',
+      'Ace Hotel',
+      'Arts Council of England',
+      'RedBull',
+      'Hard Rock',
+      'VICE',
+      'The Hoxton',
+      'Pirate Studios',
+      'Molto Music Group',
+      'pointblank Music School'
+    ],
+    artists: [
       'Pekodjinn',
       'DijahSB',
-      'Brenda & Maria Manuela',
+      'Brenda & MM',
       'Palmaria',
       'Taite Imogen',
       'The Last Skeptik',
-      'Stanzah!',
-      'Native Instruments',
-      'Nike',
-      "Arts Council of England",
-      'RedBull',
-      'pointblank Music School',
-      'The Greater Goods',
-      'Pirate Studios'
+      'Stanzah!'
     ]
   }
 };
