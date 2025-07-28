@@ -47,5 +47,11 @@ You can edit this project in several ways:
 - shadcn-ui
 - Tailwind CSS
 
+## Translation Guidelines
+- The application currently supports English (`en`) and Italian (`it`).
+- Whenever you modify any user-facing text or add new UI features, update the
+  translation dictionaries in `src/lib/i18n.ts` so both languages stay
+  synchronized.
+
 ---
 For more details, see the README.md file or visit the Lovable documentation.
