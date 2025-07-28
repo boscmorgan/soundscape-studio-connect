@@ -16,17 +16,17 @@ export const Footer = ({ language }: FooterProps) => {
   const socialLinks = [
     {
       icon: FaInstagram,
-      href: "https://instagram.com/loelash",
+      href: "https://www.instagram.com/loelashmusic/",
       label: "Instagram"
     },
     {
       icon: FaYoutube,
-      href: "https://youtube.com/loelash", 
+      href: "https://www.youtube.com/channel/UCB8DDjynd7VBZEdXlA3kg2g",
       label: "YouTube"
     },
     {
       icon: SiTiktok,
-      href: "https://tiktok.com/@loelash",
+      href: "https://www.tiktok.com/@loelashmusic",
       label: "TikTok"
     }
   ];
