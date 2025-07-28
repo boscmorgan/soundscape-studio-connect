@@ -10,7 +10,7 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
   const t = translations[language];
 
   return (
-    <section className="py-16 bg-primary text-primary-foreground">
+    <section className="py-16 bg-white text-black">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-2xl font-semibold mb-8">
@@ -22,7 +22,7 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
           {t.clients.map((client, index) => (
             <div
               key={index}
-              className="text-sm md:text-base font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200"
+              className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
             >
               {client}
             </div>
