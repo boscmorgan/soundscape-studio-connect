@@ -88,7 +88,21 @@ export const trustTranslations = {
       'Independent Artists',
       'Emerging Talents',
       'Major Labels',
-      'Music Producers'
+      'Music Producers',
+      'Pekodjinn',
+      'DijahSB',
+      'Brenda & Maria Manuela',
+      'Palmaria',
+      'Taite Imogen',
+      'The Last Skeptik',
+      'Stanzah!',
+      'Native Instruments',
+      'Nike',
+      'Arts Council of England',
+      'RedBull',
+      'pointblank Music School',
+      'The Greater Goods',
+      'Pirate Studios'
     ]
   },
   it: {
@@ -99,7 +113,21 @@ export const trustTranslations = {
       'Artisti Indipendenti',
       'Talenti Emergenti',
       'Etichette Principali',
-      'Produttori Musicali'
+      'Produttori Musicali',
+      'Pekodjinn',
+      'DijahSB',
+      'Brenda & Maria Manuela',
+      'Palmaria',
+      'Taite Imogen',
+      'The Last Skeptik',
+      'Stanzah!',
+      'Native Instruments',
+      'Nike',
+      "Arts Council of England",
+      'RedBull',
+      'pointblank Music School',
+      'The Greater Goods',
+      'Pirate Studios'
     ]
   }
 };
