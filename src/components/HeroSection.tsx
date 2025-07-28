@@ -42,7 +42,7 @@ const MobileServiceSection = ({ quadrant }: MobileSectionProps) => {
   return (
     <div
       ref={ref}
-      className="relative h-screen sticky top-0 flex items-center justify-center text-center"
+      className="relative sticky top-0 h-screen flex items-center justify-center text-center"
     >
       <div
         className="absolute inset-0 bg-cover bg-center hero-blur"
@@ -88,9 +88,10 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
   };
 
   if (isMobile) {
+    const mobileHeight = `${(quadrants.length + 1) * 100}vh`;
     return (
-      <section className="overflow-y-auto">
-        <div className="h-screen w-screen sticky top-0">
+      <section className="relative" style={{ height: mobileHeight }}>
+        <div className="sticky top-0 h-screen w-screen">
           <img
             src={heroImage}
             className="h-full w-full object-cover"
