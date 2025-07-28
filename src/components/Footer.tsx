@@ -6,11 +6,12 @@ import { Language, footerTranslations } from "@/lib/i18n";
 
 interface FooterProps {
   language: Language;
+  onContact: (subject: string) => void;
 }
 
 const translations = footerTranslations;
 
-export const Footer = ({ language }: FooterProps) => {
+export const Footer = ({ language, onContact }: FooterProps) => {
   const t = translations[language];
 
   const socialLinks = [
@@ -45,13 +46,11 @@ export const Footer = ({ language }: FooterProps) => {
             <Button
               variant="default"
               size="sm"
-              asChild
               className="rounded-full bg-primary-foreground text-primary hover:bg-primary hover:text-primary-foreground border border-primary"
+              onClick={() => onContact('Contact Request')}
             >
-              <a href={`mailto:${t.email}?subject=Contact Request`} className="flex items-center space-x-2">
-                <Mail className="w-4 h-4" />
-                <span>{t.contact}</span>
-              </a>
+              <Mail className="w-4 h-4 mr-2" />
+              <span>{t.contact}</span>
             </Button>
           </div>
 

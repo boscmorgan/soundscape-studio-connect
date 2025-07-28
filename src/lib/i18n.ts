@@ -177,3 +177,20 @@ export const notFoundTranslations = {
     cta: 'Torna alla Home'
   }
 };
+
+export const contactFormTranslations = {
+  en: {
+    title: 'Get in Touch',
+    email: 'Your Email',
+    subject: 'Subject',
+    message: 'Message',
+    send: 'Send'
+  },
+  it: {
+    title: 'Mettiti in Contatto',
+    email: 'La tua email',
+    subject: 'Oggetto',
+    message: 'Messaggio',
+    send: 'Invia'
+  }
+};
