@@ -31,9 +31,7 @@ const MobileServiceSection = ({ quadrant }: MobileSectionProps) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-          }
+          setVisible(entry.isIntersecting);
         });
       },
       { threshold: 0.6 }
@@ -47,7 +45,6 @@ const MobileServiceSection = ({ quadrant }: MobileSectionProps) => {
       ref={ref}
       className="relative sticky top-0 h-screen flex items-center justify-center text-center"
     >
-      <div className="absolute inset-0 bg-black/40" />
       <div
         className={`relative z-10 max-w-xs p-8 text-white transition-all duration-700 transform ${visible ? 'fade-slide-end' : 'fade-slide-start'}`}
         onClick={() => window.location.href = `mailto:info@loelash.com?subject=${quadrant.service.title} Service Inquiry`}
@@ -66,15 +63,17 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
   const [hoveredQuadrant, setHoveredQuadrant] = useState<string | null>(null);
   const [isAnyQuadrantHovered, setIsAnyQuadrantHovered] = useState(false);
   const isMobile = useIsMobile();
-  const [heroBlurred, setHeroBlurred] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const t = translations[language];
 
   useEffect(() => {
     const handleScroll = () => {
-      setHeroBlurred(window.scrollY > 50);
+      const progress = Math.min(window.scrollY / window.innerHeight, 1);
+      setScrollProgress(progress);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -99,12 +98,16 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
     const mobileHeight = `${(quadrants.length + 1) * 100}vh`;
     return (
       <section className="relative" style={{ height: mobileHeight }}>
-        <div className="sticky top-0 h-screen w-screen">
+        <div className="sticky top-0 h-screen w-screen overflow-hidden">
           <img
             src={heroImage}
             className="h-full w-full object-cover transition-all duration-700"
-            style={{ filter: heroBlurred ? 'blur(8px)' : 'none' }}
+            style={{ filter: `blur(${8 * scrollProgress}px)` }}
             alt="Hero"
+          />
+          <div
+            className="absolute inset-0 bg-black transition-opacity duration-700"
+            style={{ opacity: 0.4 * scrollProgress }}
           />
         </div>
         {quadrants.map((quadrant) => (
