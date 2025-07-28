@@ -119,4 +119,7 @@
   .fade-slide-end {
     @apply opacity-100 translate-y-0;
   }
+  .fade-slide-out {
+    @apply opacity-0 -translate-y-6;
+  }
 }

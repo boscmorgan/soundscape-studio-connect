@@ -17,13 +17,15 @@ interface MobileSectionProps {
       cta: string;
     };
   };
+  index: number;
+  activeIndex: number;
+  onVisible: (idx: number) => void;
 }
 
 const heroImage = '/lovable-uploads/d60cfc4b-6c44-42b3-8a9d-f53c0c728f93.png';
 
-const MobileServiceSection = ({ quadrant }: MobileSectionProps) => {
+const MobileServiceSection = ({ quadrant, index, activeIndex, onVisible }: MobileSectionProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
@@ -31,14 +33,19 @@ const MobileServiceSection = ({ quadrant }: MobileSectionProps) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setVisible(entry.isIntersecting);
+          if (entry.isIntersecting) {
+            onVisible(index);
+          }
         });
       },
       { threshold: 0.6 }
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [index, onVisible]);
+
+  const stateClass =
+    index === activeIndex ? 'fade-slide-end' : index < activeIndex ? 'fade-slide-out' : 'fade-slide-start';
 
   return (
     <div
@@ -46,7 +53,7 @@ const MobileServiceSection = ({ quadrant }: MobileSectionProps) => {
       className="relative sticky top-0 h-screen flex items-center justify-center text-center"
     >
       <div
-        className={`relative z-10 max-w-xs p-8 text-white transition-all duration-700 transform ${visible ? 'fade-slide-end' : 'fade-slide-start'}`}
+        className={`relative z-10 max-w-xs p-8 text-white transition-all duration-700 transform ${stateClass}`}
         onClick={() => window.location.href = `mailto:info@loelash.com?subject=${quadrant.service.title} Service Inquiry`}
       >
         <h3 className="text-3xl font-bold mb-4">{quadrant.service.title}</h3>
@@ -64,25 +71,30 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
   const [isAnyQuadrantHovered, setIsAnyQuadrantHovered] = useState(false);
   const isMobile = useIsMobile();
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const t = translations[language];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const progress = Math.min(window.scrollY / window.innerHeight, 1);
-      setScrollProgress(progress);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const quadrants = [
     { id: 'mixing', service: t.services.mixing, position: 'top-left' },
     { id: 'mastering', service: t.services.mastering, position: 'top-right' },
     { id: 'production', service: t.services.production, position: 'bottom-left' },
     { id: 'musicianship', service: t.services.musicianship, position: 'bottom-right' },
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const progress = Math.min(window.scrollY / window.innerHeight, quadrants.length);
+      setScrollProgress(Math.min(progress, 1));
+      const index = Math.min(
+        quadrants.length - 1,
+        Math.max(Math.round(window.scrollY / window.innerHeight) - 1, 0)
+      );
+      setActiveIndex(index);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleQuadrantEnter = (quadrantId: string) => {
     setHoveredQuadrant(quadrantId);
@@ -110,8 +122,14 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
             style={{ opacity: 0.4 * scrollProgress }}
           />
         </div>
-        {quadrants.map((quadrant) => (
-          <MobileServiceSection key={quadrant.id} quadrant={quadrant} />
+        {quadrants.map((quadrant, idx) => (
+          <MobileServiceSection
+            key={quadrant.id}
+            quadrant={quadrant}
+            index={idx}
+            activeIndex={activeIndex}
+            onVisible={setActiveIndex}
+          />
         ))}
       </section>
     );
