@@ -127,3 +127,14 @@ export const aboutTranslations = {
     text: 'Sono Lorenzo (alias Loelash) - un polistrumentista, produttore, DJ e Apple Trainer certificato con base a Londra. Con oltre un decennio di esperienza nella creazione e performance musicale, unisco la formazione classica alle moderne competenze di produzione per supportare gli artisti in ogni fase del loro percorso. Che si tratti di lezioni, session work, engineering o promozione, la mia missione è aiutarti a sbloccare il tuo pieno potenziale creativo.'
   }
 };
+
+export const notFoundTranslations = {
+  en: {
+    message: 'Oops! Page not found',
+    cta: 'Return to Home'
+  },
+  it: {
+    message: 'Ops! Pagina non trovata',
+    cta: 'Torna alla Home'
+  }
+};
