@@ -1,5 +1,16 @@
 export type Language = 'en' | 'it';
 
+export const seoTranslations = {
+  en: {
+    title: 'LOELASH - Music Producer & Studio',
+    description: 'Professional mixing, mastering, and music production services. Craft your sound, shape your future.'
+  },
+  it: {
+    title: 'LOELASH - Producer musicale & Studio',
+    description: 'Servizi professionali di mixing, mastering e produzione musicale. Crea il tuo suono, modella il tuo futuro.'
+  }
+};
+
 export const headerTranslations = {
   en: {
     music: 'Music',
