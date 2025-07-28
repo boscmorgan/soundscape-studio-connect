@@ -10,7 +10,7 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
   const t = translations[language];
 
   return (
-    <section className="py-16 bg-white text-black">
+    <section className="py-16 bg-background text-foreground">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-2xl font-semibold mb-8">

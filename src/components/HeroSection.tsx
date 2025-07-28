@@ -142,7 +142,7 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
     <section className="relative flex justify-center h-screen min-h-[70vh] overflow-hidden">
       {/* Main Hero Image Container */}
       <div
-        className="relative w-full h-full max-w-screen-lg mx-auto cursor-none"
+        className="relative w-full h-full max-w-screen-xl mx-auto cursor-none"
         onMouseLeave={handleMouseLeave}
       >
         {/* Base Image */}
