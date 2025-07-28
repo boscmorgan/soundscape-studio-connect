@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Language, heroTranslations } from "@/lib/i18n";
 
 interface HeroSectionProps {
@@ -7,9 +8,65 @@ interface HeroSectionProps {
 
 const translations = heroTranslations;
 
+interface MobileSectionProps {
+  quadrant: {
+    id: string;
+    service: {
+      title: string;
+      description: string;
+      cta: string;
+    };
+  };
+}
+
+const heroImage = '/lovable-uploads/d60cfc4b-6c44-42b3-8a9d-f53c0c728f93.png';
+
+const MobileServiceSection = ({ quadrant }: MobileSectionProps) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      });
+    }, { threshold: 0.6 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="relative h-screen sticky top-0 flex items-center justify-center text-center"
+    >
+      <div
+        className="absolute inset-0 bg-cover bg-center hero-blur"
+        style={{ backgroundImage: `url('${heroImage}')` }}
+      />
+      <div className="absolute inset-0 bg-black/40" />
+      <div
+        className={`relative z-10 max-w-xs p-8 text-white transition-all duration-700 transform ${visible ? 'fade-slide-end' : 'fade-slide-start'}`}
+        onClick={() => window.location.href = `mailto:info@loelash.com?subject=${quadrant.service.title} Service Inquiry`}
+      >
+        <h3 className="text-3xl font-bold mb-4">{quadrant.service.title}</h3>
+        <p className="text-base mb-6 opacity-90">{quadrant.service.description}</p>
+        <div className="px-6 py-2 border border-white/50 rounded-full text-sm font-medium">
+          {quadrant.service.cta}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const HeroSection = ({ language }: HeroSectionProps) => {
   const [hoveredQuadrant, setHoveredQuadrant] = useState<string | null>(null);
   const [isAnyQuadrantHovered, setIsAnyQuadrantHovered] = useState(false);
+  const isMobile = useIsMobile();
 
   const t = translations[language];
 
@@ -30,6 +87,23 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
     setIsAnyQuadrantHovered(false);
   };
 
+  if (isMobile) {
+    return (
+      <section className="overflow-y-auto">
+        <div className="h-screen w-screen sticky top-0">
+          <img
+            src={heroImage}
+            className="h-full w-full object-cover"
+            alt="Hero"
+          />
+        </div>
+        {quadrants.map((quadrant) => (
+          <MobileServiceSection key={quadrant.id} quadrant={quadrant} />
+        ))}
+      </section>
+    );
+  }
+
   return (
     <section className="relative flex justify-center h-screen min-h-[70vh] overflow-hidden">
       {/* Main Hero Image Container */}
@@ -38,10 +112,10 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
         onMouseLeave={handleMouseLeave}
       >
         {/* Base Image */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center transition-all duration-500"
-          style={{ 
-            backgroundImage: `url('/lovable-uploads/d60cfc4b-6c44-42b3-8a9d-f53c0c728f93.png')`,
+          style={{
+            backgroundImage: `url('${heroImage}')`,
             filter: isAnyQuadrantHovered ? 'blur(4px)' : 'none'
           }}
         />
@@ -66,13 +140,13 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
           >
             {/* Service Content Overlay - Only visible when any quadrant is hovered */}
             <div className={`absolute inset-0 transition-all duration-500 ${
-              isAnyQuadrantHovered 
-                ? 'opacity-100' 
+              isAnyQuadrantHovered
+                ? 'opacity-100'
                 : 'opacity-0'
             }`}>
               <div className={`absolute inset-0 flex flex-col justify-center items-center text-center p-8 text-white transition-all duration-300 ${
-                hoveredQuadrant === quadrant.id 
-                  ? 'filter-none' 
+                hoveredQuadrant === quadrant.id
+                  ? 'filter-none'
                   : isAnyQuadrantHovered ? 'filter blur-sm' : ''
               }`}>
                 <h3 className="text-2xl md:text-3xl font-bold mb-4">
