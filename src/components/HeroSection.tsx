@@ -57,16 +57,9 @@ const translations = {
 
 export const HeroSection = ({ language }: HeroSectionProps) => {
   const [hoveredQuadrant, setHoveredQuadrant] = useState<string | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isAnyQuadrantHovered, setIsAnyQuadrantHovered] = useState(false);
 
   const t = translations[language];
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setMousePosition({ x, y });
-  };
 
   const quadrants = [
     { id: 'mixing', service: t.services.mixing, position: 'top-left' },
@@ -75,25 +68,36 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
     { id: 'musicianship', service: t.services.musicianship, position: 'bottom-right' },
   ];
 
+  const handleQuadrantEnter = (quadrantId: string) => {
+    setHoveredQuadrant(quadrantId);
+    setIsAnyQuadrantHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredQuadrant(null);
+    setIsAnyQuadrantHovered(false);
+  };
+
   return (
     <section className="relative h-screen overflow-hidden">
       {/* Main Hero Image Container */}
       <div 
         className="relative w-full h-full cursor-none"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => setHoveredQuadrant(null)}
+        onMouseLeave={handleMouseLeave}
       >
         {/* Base Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-all duration-300"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-500"
           style={{ 
             backgroundImage: `url('/lovable-uploads/d60cfc4b-6c44-42b3-8a9d-f53c0c728f93.png')`,
-            filter: hoveredQuadrant ? 'blur(8px) brightness(0.3)' : 'brightness(0.4)'
+            filter: isAnyQuadrantHovered ? 'blur(4px)' : 'none'
           }}
         />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-hero-overlay/40" />
+        {/* Light overlay for text readability when hovered */}
+        {isAnyQuadrantHovered && (
+          <div className="absolute inset-0 bg-black/20 transition-all duration-500" />
+        )}
 
         {/* Quadrants */}
         {quadrants.map((quadrant) => (
@@ -105,45 +109,33 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
               quadrant.position === 'bottom-left' ? 'bottom-0 left-0' :
               'bottom-0 right-0'
             }`}
-            onMouseEnter={() => setHoveredQuadrant(quadrant.id)}
+            onMouseEnter={() => handleQuadrantEnter(quadrant.id)}
             onClick={() => window.location.href = `mailto:info@loelash.com?subject=${quadrant.service.title} Service Inquiry`}
           >
-            {/* Service Content Overlay */}
-            <div className={`absolute inset-0 bg-quadrant-overlay/80 transition-all duration-300 ${
-              hoveredQuadrant === quadrant.id 
+            {/* Service Content Overlay - Only visible when any quadrant is hovered */}
+            <div className={`absolute inset-0 transition-all duration-500 ${
+              isAnyQuadrantHovered 
                 ? 'opacity-100' 
-                : 'opacity-0 group-hover:opacity-100'
+                : 'opacity-0'
             }`}>
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8 text-hero-text">
+              <div className={`absolute inset-0 flex flex-col justify-center items-center text-center p-8 text-white transition-all duration-300 ${
+                hoveredQuadrant === quadrant.id 
+                  ? 'filter-none' 
+                  : isAnyQuadrantHovered ? 'filter blur-sm' : ''
+              }`}>
                 <h3 className="text-2xl md:text-3xl font-bold mb-4">
                   {quadrant.service.title}
                 </h3>
                 <p className="text-sm md:text-base mb-6 opacity-90 max-w-xs">
                   {quadrant.service.description}
                 </p>
-                <div className="px-6 py-2 border border-hero-text/50 rounded-full text-sm font-medium hover:bg-hero-text hover:text-primary transition-all duration-200">
+                <div className="px-6 py-2 border border-white/50 rounded-full text-sm font-medium hover:bg-white hover:text-black transition-all duration-200">
                   {quadrant.service.cta}
                 </div>
               </div>
             </div>
           </div>
         ))}
-
-        {/* Mouse follower spotlight effect */}
-        {hoveredQuadrant && (
-          <div 
-            className="absolute pointer-events-none transition-all duration-100"
-            style={{
-              left: mousePosition.x - 100,
-              top: mousePosition.y - 100,
-              width: 200,
-              height: 200,
-              background: `radial-gradient(circle, transparent 0%, rgba(0,0,0,0.8) 70%)`,
-              borderRadius: '50%',
-              zIndex: 20
-            }}
-          />
-        )}
       </div>
     </section>
   );

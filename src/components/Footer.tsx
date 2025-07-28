@@ -46,7 +46,7 @@ export const Footer = ({ language }: FooterProps) => {
           {/* Logo and Contact */}
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
             <img 
-              src="/lovable-uploads/b1542760-fa00-4eba-8f3b-6e43a3952095.png" 
+              src="/lovable-uploads/56b6f8cb-ea6a-416d-9253-07f2c388031e.png" 
               alt="LOELASH" 
               className="h-6 w-auto filter invert"
             />
