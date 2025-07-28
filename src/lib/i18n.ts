@@ -30,48 +30,48 @@ export const heroTranslations = {
   en: {
     services: {
       mixing: {
-        title: 'Mixing',
-        description: 'Transform your raw tracks into polished, professional recordings with precise balance and clarity.',
-        cta: 'Get Mixed'
+        title: 'Music Tutoring & Production Coaching',
+        description: 'Tailored lessons in Music Theory, Harmony, Logic Pro X, Sound Design, and more. From £20/hr.',
+        cta: 'Book a Session'
       },
       mastering: {
-        title: 'Mastering',
-        description: 'Give your music the final touch with industry-standard mastering for streaming and physical release.',
-        cta: 'Get Mastered'
+        title: 'Session Music Production',
+        description: 'Full tracks, instrumental arrangements, and custom stems to match your sound. From £50.',
+        cta: 'Request a Quote'
       },
       production: {
-        title: 'Production',
-        description: 'From concept to completion, bring your musical vision to life with professional production.',
-        cta: 'Start Producing'
+        title: 'Paid Social Media Promotion',
+        description: 'Targeted ad campaigns on Facebook & Instagram to increase your engagement. £100 per campaign.',
+        cta: 'Promote Your Release'
       },
       musicianship: {
-        title: 'Musicianship',
-        description: 'Expert session work and musical arrangement to enhance your creative projects.',
-        cta: 'Collaborate'
+        title: 'Mixing & Mastering Services',
+        description: 'Professional mixing and mastering with a fast turnaround and unlimited revisions. Singles from £50.',
+        cta: 'Send Your Tracks'
       }
     }
   },
   it: {
     services: {
       mixing: {
-        title: 'Mixing',
-        description: 'Trasforma le tue tracce grezze in registrazioni professionali con equilibrio e chiarezza precisi.',
-        cta: 'Fai Mixare'
+        title: 'Lezioni di Musica & Coaching di Produzione',
+        description: 'Lezioni personalizzate di Teoria Musicale, Armonia, Logic Pro X, Sound Design e altro. Da €23/ora.',
+        cta: 'Prenota una Sessione'
       },
       mastering: {
-        title: 'Mastering',
-        description: 'Dai alla tua musica il tocco finale con mastering professionale per streaming e rilascio fisico.',
-        cta: 'Fai Masterizzare'
+        title: 'Produzione Musicale su Commissione',
+        description: 'Brani completi, arrangiamenti strumentali e stem personalizzati per il tuo sound. Da €59.',
+        cta: 'Richiedi un Preventivo'
       },
       production: {
-        title: 'Produzione',
-        description: 'Dal concetto al completamento, porta in vita la tua visione musicale con produzione professionale.',
-        cta: 'Inizia a Produrre'
+        title: 'Promozione Social Media a Pagamento',
+        description: 'Campagne pubblicitarie mirate su Facebook e Instagram per aumentare il tuo engagement. €117 per campagna.',
+        cta: 'Promuovi la Tua Uscita'
       },
       musicianship: {
-        title: 'Musicianship',
-        description: 'Lavoro di sessione esperto e arrangiamento musicale per migliorare i tuoi progetti creativi.',
-        cta: 'Collabora'
+        title: 'Servizi di Mixing & Mastering',
+        description: 'Mixing e mastering professionali con consegna rapida e revisioni illimitate. Singoli da €59.',
+        cta: 'Invia le Tue Tracce'
       }
     }
   }
