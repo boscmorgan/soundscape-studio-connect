@@ -17,11 +17,17 @@ export const Header = ({ language, onLanguageChange, onContact }: HeaderProps) =
         <nav className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src="/lovable-uploads/56b6f8cb-ea6a-416d-9253-07f2c388031e.png" 
-              alt="LOELASH" 
-              className="h-8 w-auto"
-            />
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              aria-label="Scroll to top"
+              className="p-0 border-0 bg-transparent cursor-pointer"
+            >
+              <img
+                src="/lovable-uploads/56b6f8cb-ea6a-416d-9253-07f2c388031e.png"
+                alt="LOELASH"
+                className="h-8 w-auto"
+              />
+            </button>
           </div>
 
           {/* Navigation */}
