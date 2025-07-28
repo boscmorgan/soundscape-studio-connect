@@ -28,6 +28,7 @@ export const subHeaderTranslations = {
 
 export const heroTranslations = {
   en: {
+    imageAlt: 'Recording studio with synthesizers and mixing desk',
     services: {
       mixing: {
         title: 'Music Tutoring & Production Coaching',
@@ -52,6 +53,7 @@ export const heroTranslations = {
     }
   },
   it: {
+    imageAlt: 'Studio di registrazione con sintetizzatori e mixer',
     services: {
       mixing: {
         title: 'Lezioni di Musica & Coaching di Produzione',

@@ -118,7 +118,7 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
             src={heroImage}
             className="h-full w-full object-cover transition-all duration-700"
             style={{ filter: `blur(${8 * scrollProgress}px)` }}
-            alt="Hero"
+            alt={t.imageAlt}
           />
           <div
             className="absolute inset-0 bg-black transition-opacity duration-700"
