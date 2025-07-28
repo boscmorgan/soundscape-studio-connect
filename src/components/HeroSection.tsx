@@ -53,8 +53,8 @@ const MobileServiceSection = ({ quadrant, index, activeIndex, onVisible }: Mobil
       ref={ref}
       className="relative sticky top-0 h-screen flex items-center justify-center text-center"
     >
-      <div
-        className={`relative z-10 max-w-xs p-8 text-white transition-all duration-700 transform ${stateClass}`}
+      <button
+        className={`relative z-10 max-w-xs p-8 text-white transition-all duration-700 transform focus:outline-none ${stateClass}`}
         onClick={() =>
           (window.location.href = mailtoLink(`${quadrant.service.title} Service Inquiry`))
         }
@@ -64,7 +64,7 @@ const MobileServiceSection = ({ quadrant, index, activeIndex, onVisible }: Mobil
         <div className="px-6 py-2 border border-white/50 rounded-full text-sm font-medium">
           {quadrant.service.cta}
         </div>
-      </div>
+      </button>
     </div>
   );
 };
@@ -161,15 +161,17 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
 
         {/* Quadrants */}
         {quadrants.map((quadrant) => (
-          <div
+          <button
             key={quadrant.id}
-            className={`absolute w-1/2 h-1/2 transition-all duration-300 cursor-pointer group ${
+            className={`absolute w-1/2 h-1/2 transition-all duration-300 cursor-pointer group focus:outline-none ${
               quadrant.position === 'top-left' ? 'top-0 left-0' :
               quadrant.position === 'top-right' ? 'top-0 right-0' :
               quadrant.position === 'bottom-left' ? 'bottom-0 left-0' :
               'bottom-0 right-0'
             }`}
             onMouseEnter={() => handleQuadrantEnter(quadrant.id)}
+            onFocus={() => handleQuadrantEnter(quadrant.id)}
+            onBlur={handleMouseLeave}
             onClick={() =>
               (window.location.href = mailtoLink(`${quadrant.service.title} Service Inquiry`))
             }
@@ -196,7 +198,7 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
                 </div>
               </div>
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </section>
