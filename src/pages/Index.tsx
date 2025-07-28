@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { SubHeader } from "@/components/SubHeader";
 import { HeroSection } from "@/components/HeroSection";
 import { TrustSection } from "@/components/TrustSection";
+import { AboutSection } from "@/components/AboutSection";
 import { Footer } from "@/components/Footer";
 import type { Language } from "@/lib/i18n";
 
@@ -15,6 +16,7 @@ const Index = () => {
       <SubHeader language={language} />
       <HeroSection language={language} />
       <TrustSection language={language} />
+      <AboutSection language={language} />
       <Footer language={language} />
     </div>
   );
