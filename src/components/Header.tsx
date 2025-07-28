@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Language, headerTranslations } from "@/lib/i18n";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 
 
 interface HeaderProps {
@@ -10,6 +12,24 @@ interface HeaderProps {
 
 export const Header = ({ language, onLanguageChange, onContact }: HeaderProps) => {
   const t = headerTranslations[language];
+
+  const socialLinks = [
+    {
+      icon: FaInstagram,
+      href: "https://www.instagram.com/loelashmusic/",
+      label: "Instagram",
+    },
+    {
+      icon: FaYoutube,
+      href: "https://www.youtube.com/channel/UCB8DDjynd7VBZEdXlA3kg2g",
+      label: "YouTube",
+    },
+    {
+      icon: SiTiktok,
+      href: "https://www.tiktok.com/@loelashmusic",
+      label: "TikTok",
+    },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background backdrop-blur-md border-b border-border">
@@ -32,24 +52,21 @@ export const Header = ({ language, onLanguageChange, onContact }: HeaderProps) =
 
           {/* Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={() => onContact('Music Inquiry')}
-              className="px-4 py-2 rounded-full bg-background text-foreground hover:bg-muted transition-all duration-200 border border-border"
-            >
-              {t.music}
-            </button>
-            <button
-              onClick={() => onContact('Services Inquiry')}
-              className="px-4 py-2 rounded-full bg-background text-foreground hover:bg-muted transition-all duration-200 border border-border"
-            >
-              {t.services}
-            </button>
-            <button
-              onClick={() => onContact('Contact Request')}
-              className="px-4 py-2 rounded-full bg-background text-foreground hover:bg-muted transition-all duration-200 border border-border"
-            >
-              {t.contact}
-            </button>
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="p-2 text-foreground/70 hover:text-foreground transition-colors duration-200"
+                >
+                  <Icon className="w-5 h-5" />
+                </a>
+              );
+            })}
           </div>
 
           {/* Right side */}
