@@ -52,6 +52,9 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				'hero-overlay': 'hsl(var(--hero-overlay))',
+				'hero-text': 'hsl(var(--hero-text))',
+				'quadrant-overlay': 'hsl(var(--quadrant-overlay))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
