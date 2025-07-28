@@ -147,12 +147,16 @@ export const footerTranslations = {
   en: {
     contact: 'Get in Touch',
     rights: '© 2024 LOELASH. All rights reserved.',
-    email: 'info@loelash.com'
+    email: 'info@loelash.com',
+    credits: 'Website created by',
+    creditsLink: 'Sound Niccolò Studio'
   },
   it: {
     contact: 'Mettiti in Contatto',
     rights: '© 2024 LOELASH. Tutti i diritti riservati.',
-    email: 'info@loelash.com'
+    email: 'info@loelash.com',
+    credits: 'Sito realizzato da',
+    creditsLink: 'Sound Niccolò Studio'
   }
 };
 

@@ -73,7 +73,20 @@ export const Footer = ({ language, onContact }: FooterProps) => {
             })}
           </div>
         </div>
-        {/* ...existing code... */}
+        <div className="mt-8 text-center text-sm space-y-2">
+          <p>{t.rights}</p>
+          <p>
+            {t.credits}{' '}
+            <a
+              href="https://www.soundniccolo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              {t.creditsLink}
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
