@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Language, headerTranslations } from "@/lib/i18n";
 import { mailtoLink } from "@/lib/utils";
 
@@ -66,17 +67,19 @@ export const Header = ({ language, onLanguageChange }: HeaderProps) => {
               >
                 IT
               </button>
-            </div>
+          </div>
 
-            {/* CTA Button */}
-            <Button
-              variant="cta"
-              size="sm"
-              asChild
-              className="rounded-full"
-            >
-              <a href={mailtoLink("Let's Work Together!")}>{t.cta}</a>
-            </Button>
+          <ThemeToggle language={language} />
+
+          {/* CTA Button */}
+          <Button
+            variant="cta"
+            size="sm"
+            asChild
+            className="rounded-full"
+          >
+            <a href={mailtoLink("Let's Work Together!")}>{t.cta}</a>
+          </Button>
           </div>
         </nav>
       </div>

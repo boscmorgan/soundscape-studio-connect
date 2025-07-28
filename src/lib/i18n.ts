@@ -5,13 +5,15 @@ export const headerTranslations = {
     music: 'Music',
     services: 'Services',
     contact: 'Contact',
-    cta: "Let's Work!"
+    cta: "Let's Work!",
+    theme: 'Toggle theme'
   },
   it: {
     music: 'Musica',
     services: 'Servizi',
     contact: 'Contatto',
-    cta: 'Lavoriamo!'
+    cta: 'Lavoriamo!',
+    theme: 'Cambia tema'
   }
 };
 
