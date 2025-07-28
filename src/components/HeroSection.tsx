@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Language, heroTranslations } from "@/lib/i18n";
-import { mailtoLink } from "@/lib/utils";
+
 
 interface HeroSectionProps {
   language: Language;
+  onContact: (subject: string) => void;
 }
 
 const translations = heroTranslations;
@@ -21,11 +22,12 @@ interface MobileSectionProps {
   index: number;
   activeIndex: number;
   onVisible: (idx: number) => void;
+  onContact: (subject: string) => void;
 }
 
 const heroImage = '/lovable-uploads/d60cfc4b-6c44-42b3-8a9d-f53c0c728f93.png';
 
-const MobileServiceSection = ({ quadrant, index, activeIndex, onVisible }: MobileSectionProps) => {
+const MobileServiceSection = ({ quadrant, index, activeIndex, onVisible, onContact }: MobileSectionProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -55,9 +57,7 @@ const MobileServiceSection = ({ quadrant, index, activeIndex, onVisible }: Mobil
     >
       <button
         className={`relative z-10 max-w-xs p-8 text-white transition-all duration-700 transform focus:outline-none ${stateClass}`}
-        onClick={() =>
-          (window.location.href = mailtoLink(`${quadrant.service.title} Service Inquiry`))
-        }
+        onClick={() => onContact(`${quadrant.service.title} Service Inquiry`)}
       >
         <h3 className="text-3xl font-bold mb-4">{quadrant.service.title}</h3>
         <p className="text-base mb-6 opacity-90">{quadrant.service.description}</p>
@@ -69,7 +69,7 @@ const MobileServiceSection = ({ quadrant, index, activeIndex, onVisible }: Mobil
   );
 };
 
-export const HeroSection = ({ language }: HeroSectionProps) => {
+export const HeroSection = ({ language, onContact }: HeroSectionProps) => {
   const [hoveredQuadrant, setHoveredQuadrant] = useState<string | null>(null);
   const [isAnyQuadrantHovered, setIsAnyQuadrantHovered] = useState(false);
   const isMobile = useIsMobile();
@@ -132,6 +132,7 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
             index={idx}
             activeIndex={activeIndex}
             onVisible={setActiveIndex}
+            onContact={onContact}
           />
         ))}
       </section>
@@ -172,9 +173,7 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
             onMouseEnter={() => handleQuadrantEnter(quadrant.id)}
             onFocus={() => handleQuadrantEnter(quadrant.id)}
             onBlur={handleMouseLeave}
-            onClick={() =>
-              (window.location.href = mailtoLink(`${quadrant.service.title} Service Inquiry`))
-            }
+            onClick={() => onContact(`${quadrant.service.title} Service Inquiry`)}
           >
             {/* Service Content Overlay - Only visible when any quadrant is hovered */}
             <div className={`absolute inset-0 transition-all duration-500 ${
