@@ -28,13 +28,16 @@ const MobileServiceSection = ({ quadrant }: MobileSectionProps) => {
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-        }
-      });
-    }, { threshold: 0.6 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
@@ -44,10 +47,6 @@ const MobileServiceSection = ({ quadrant }: MobileSectionProps) => {
       ref={ref}
       className="relative sticky top-0 h-screen flex items-center justify-center text-center"
     >
-      <div
-        className="absolute inset-0 bg-cover bg-center hero-blur"
-        style={{ backgroundImage: `url('${heroImage}')` }}
-      />
       <div className="absolute inset-0 bg-black/40" />
       <div
         className={`relative z-10 max-w-xs p-8 text-white transition-all duration-700 transform ${visible ? 'fade-slide-end' : 'fade-slide-start'}`}
@@ -67,8 +66,17 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
   const [hoveredQuadrant, setHoveredQuadrant] = useState<string | null>(null);
   const [isAnyQuadrantHovered, setIsAnyQuadrantHovered] = useState(false);
   const isMobile = useIsMobile();
+  const [heroBlurred, setHeroBlurred] = useState(false);
 
   const t = translations[language];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHeroBlurred(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const quadrants = [
     { id: 'mixing', service: t.services.mixing, position: 'top-left' },
@@ -94,7 +102,8 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
         <div className="sticky top-0 h-screen w-screen">
           <img
             src={heroImage}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-all duration-700"
+            style={{ filter: heroBlurred ? 'blur(8px)' : 'none' }}
             alt="Hero"
           />
         </div>
