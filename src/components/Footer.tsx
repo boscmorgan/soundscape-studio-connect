@@ -2,23 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
+import { Language, footerTranslations } from "@/lib/i18n";
 
 interface FooterProps {
-  language: 'en' | 'it';
+  language: Language;
 }
 
-const translations = {
-  en: {
-    contact: "Get in Touch",
-    rights: "© 2024 LOELASH. All rights reserved.",
-    email: "info@loelash.com"
-  },
-  it: {
-    contact: "Mettiti in Contatto",
-    rights: "© 2024 LOELASH. Tutti i diritti riservati.",
-    email: "info@loelash.com"
-  }
-};
+const translations = footerTranslations;
 
 export const Footer = ({ language }: FooterProps) => {
   const t = translations[language];

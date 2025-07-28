@@ -1,31 +1,10 @@
+import { Language, trustTranslations } from "@/lib/i18n";
+
 interface TrustSectionProps {
-  language: 'en' | 'it';
+  language: Language;
 }
 
-const translations = {
-  en: {
-    title: "Trusted by artists worldwide",
-    clients: [
-      "Universal Music Group",
-      "Sony Music",
-      "Independent Artists",
-      "Emerging Talents",
-      "Major Labels",
-      "Music Producers"
-    ]
-  },
-  it: {
-    title: "La fiducia di artisti in tutto il mondo",
-    clients: [
-      "Universal Music Group", 
-      "Sony Music",
-      "Artisti Indipendenti",
-      "Talenti Emergenti",
-      "Etichette Principali",
-      "Produttori Musicali"
-    ]
-  }
-};
+const translations = trustTranslations;
 
 export const TrustSection = ({ language }: TrustSectionProps) => {
   const t = translations[language];
