@@ -86,6 +86,7 @@ export const Header = ({ language, onLanguageChange }: HeaderProps) => {
               variant="cta" 
               size="sm"
               asChild
+              className="rounded-full"
             >
               <a href="mailto:info@loelash.com?subject=Let's Work Together!">
                 {t.cta}

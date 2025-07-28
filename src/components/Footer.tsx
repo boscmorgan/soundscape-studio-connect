@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Instagram, Twitter, Youtube, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 
 interface FooterProps {
   language: 'en' | 'it';
@@ -23,19 +25,19 @@ export const Footer = ({ language }: FooterProps) => {
 
   const socialLinks = [
     {
-      icon: Instagram,
+      icon: FaInstagram,
       href: "https://instagram.com/loelash",
       label: "Instagram"
     },
     {
-      icon: Twitter, 
-      href: "https://twitter.com/loelash",
-      label: "Twitter"
-    },
-    {
-      icon: Youtube,
+      icon: FaYoutube,
       href: "https://youtube.com/loelash", 
       label: "YouTube"
+    },
+    {
+      icon: SiTiktok,
+      href: "https://tiktok.com/@loelash",
+      label: "TikTok"
     }
   ];
 
@@ -50,12 +52,11 @@ export const Footer = ({ language }: FooterProps) => {
               alt="LOELASH" 
               className="h-6 w-auto filter invert"
             />
-            
-            <Button 
-              variant="outline" 
+            <Button
+              variant="default"
               size="sm"
               asChild
-              className="rounded-full"
+              className="rounded-full bg-primary-foreground text-primary hover:bg-primary hover:text-primary-foreground border border-primary"
             >
               <a href={`mailto:${t.email}?subject=Contact Request`} className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
@@ -83,13 +84,7 @@ export const Footer = ({ language }: FooterProps) => {
             })}
           </div>
         </div>
-
-        {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center">
-          <p className="text-sm text-primary-foreground/70">
-            {t.rights}
-          </p>
-        </div>
+        {/* ...existing code... */}
       </div>
     </footer>
   );
