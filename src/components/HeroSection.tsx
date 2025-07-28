@@ -6,8 +6,6 @@ interface HeroSectionProps {
 
 const translations = {
   en: {
-    headline: "Craft your sound. Shape your future.",
-    subline: "Mixing. Mastering. Musicianship.",
     services: {
       mixing: {
         title: "Mixing",
@@ -32,8 +30,6 @@ const translations = {
     }
   },
   it: {
-    headline: "Crea il tuo suono. Modella il tuo futuro.",
-    subline: "Mixing. Mastering. Musicianship.",
     services: {
       mixing: {
         title: "Mixing",
@@ -81,16 +77,6 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
 
   return (
     <section className="relative h-screen overflow-hidden">
-      {/* Hero Text */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 text-center pointer-events-none">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-hero-text mb-4 tracking-tight">
-          {t.headline}
-        </h1>
-        <p className="text-xl md:text-2xl text-hero-text/80 font-light tracking-wide">
-          {t.subline}
-        </p>
-      </div>
-
       {/* Main Hero Image Container */}
       <div 
         className="relative w-full h-full cursor-none"
@@ -122,17 +108,6 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
             onMouseEnter={() => setHoveredQuadrant(quadrant.id)}
             onClick={() => window.location.href = `mailto:info@loelash.com?subject=${quadrant.service.title} Service Inquiry`}
           >
-            {/* Quadrant Image (visible on hover) */}
-            {hoveredQuadrant === quadrant.id && (
-              <div 
-                className="absolute inset-0 bg-cover bg-center transition-all duration-300"
-                style={{ 
-                  backgroundImage: `url('/lovable-uploads/d60cfc4b-6c44-42b3-8a9d-f53c0c728f93.png')`,
-                  filter: 'brightness(0.7)'
-                }}
-              />
-            )}
-            
             {/* Service Content Overlay */}
             <div className={`absolute inset-0 bg-quadrant-overlay/80 transition-all duration-300 ${
               hoveredQuadrant === quadrant.id 

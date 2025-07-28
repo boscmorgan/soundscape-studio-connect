@@ -24,31 +24,35 @@ export const Header = ({ language, onLanguageChange }: HeaderProps) => {
   const t = translations[language];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-6 py-4">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-bold tracking-tight">
-            LOELASH
+          <div className="flex items-center">
+            <img 
+              src="/lovable-uploads/b1542760-fa00-4eba-8f3b-6e43a3952095.png" 
+              alt="LOELASH" 
+              className="h-8 w-auto"
+            />
           </div>
 
           {/* Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-4">
             <a 
               href="mailto:info@loelash.com?subject=Music Inquiry"
-              className="text-foreground hover:text-primary transition-colors duration-200"
+              className="px-4 py-2 rounded-full bg-background text-foreground hover:bg-muted transition-all duration-200 border border-border"
             >
               {t.music}
             </a>
             <a 
               href="mailto:info@loelash.com?subject=Services Inquiry"
-              className="text-foreground hover:text-primary transition-colors duration-200"
+              className="px-4 py-2 rounded-full bg-background text-foreground hover:bg-muted transition-all duration-200 border border-border"
             >
               {t.services}
             </a>
             <a 
               href="mailto:info@loelash.com?subject=Contact Request"
-              className="text-foreground hover:text-primary transition-colors duration-200"
+              className="px-4 py-2 rounded-full bg-background text-foreground hover:bg-muted transition-all duration-200 border border-border"
             >
               {t.contact}
             </a>

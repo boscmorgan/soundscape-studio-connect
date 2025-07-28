@@ -40,12 +40,16 @@ export const Footer = ({ language }: FooterProps) => {
   ];
 
   return (
-    <footer className="bg-background border-t border-border py-12">
+    <footer className="bg-primary text-primary-foreground py-12">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
           {/* Logo and Contact */}
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
-            <div className="text-xl font-bold">LOELASH</div>
+            <img 
+              src="/lovable-uploads/b1542760-fa00-4eba-8f3b-6e43a3952095.png" 
+              alt="LOELASH" 
+              className="h-6 w-auto filter invert"
+            />
             
             <Button 
               variant="outline" 
@@ -70,7 +74,7 @@ export const Footer = ({ language }: FooterProps) => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="p-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-200"
                   aria-label={social.label}
                 >
                   <Icon className="w-5 h-5" />
@@ -81,8 +85,8 @@ export const Footer = ({ language }: FooterProps) => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center">
+          <p className="text-sm text-primary-foreground/70">
             {t.rights}
           </p>
         </div>

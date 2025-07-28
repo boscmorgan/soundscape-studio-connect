@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
+import { SubHeader } from "@/components/SubHeader";
 import { HeroSection } from "@/components/HeroSection";
 import { TrustSection } from "@/components/TrustSection";
 import { Footer } from "@/components/Footer";
@@ -10,6 +11,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header language={language} onLanguageChange={setLanguage} />
+      <SubHeader language={language} />
       <HeroSection language={language} />
       <TrustSection language={language} />
       <Footer language={language} />
