@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Language, heroTranslations } from "@/lib/i18n";
+import { mailtoLink } from "@/lib/utils";
 
 interface HeroSectionProps {
   language: Language;
@@ -54,7 +55,9 @@ const MobileServiceSection = ({ quadrant, index, activeIndex, onVisible }: Mobil
     >
       <div
         className={`relative z-10 max-w-xs p-8 text-white transition-all duration-700 transform ${stateClass}`}
-        onClick={() => window.location.href = `mailto:info@loelash.com?subject=${quadrant.service.title} Service Inquiry`}
+        onClick={() =>
+          (window.location.href = mailtoLink(`${quadrant.service.title} Service Inquiry`))
+        }
       >
         <h3 className="text-3xl font-bold mb-4">{quadrant.service.title}</h3>
         <p className="text-base mb-6 opacity-90">{quadrant.service.description}</p>
@@ -167,7 +170,9 @@ export const HeroSection = ({ language }: HeroSectionProps) => {
               'bottom-0 right-0'
             }`}
             onMouseEnter={() => handleQuadrantEnter(quadrant.id)}
-            onClick={() => window.location.href = `mailto:info@loelash.com?subject=${quadrant.service.title} Service Inquiry`}
+            onClick={() =>
+              (window.location.href = mailtoLink(`${quadrant.service.title} Service Inquiry`))
+            }
           >
             {/* Service Content Overlay - Only visible when any quadrant is hovered */}
             <div className={`absolute inset-0 transition-all duration-500 ${

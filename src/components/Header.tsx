@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Language, headerTranslations } from "@/lib/i18n";
+import { mailtoLink } from "@/lib/utils";
 
 interface HeaderProps {
   language: Language;
@@ -24,20 +25,20 @@ export const Header = ({ language, onLanguageChange }: HeaderProps) => {
 
           {/* Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            <a 
-              href="mailto:info@loelash.com?subject=Music Inquiry"
+            <a
+              href={mailtoLink('Music Inquiry')}
               className="px-4 py-2 rounded-full bg-background text-foreground hover:bg-muted transition-all duration-200 border border-border"
             >
               {t.music}
             </a>
-            <a 
-              href="mailto:info@loelash.com?subject=Services Inquiry"
+            <a
+              href={mailtoLink('Services Inquiry')}
               className="px-4 py-2 rounded-full bg-background text-foreground hover:bg-muted transition-all duration-200 border border-border"
             >
               {t.services}
             </a>
-            <a 
-              href="mailto:info@loelash.com?subject=Contact Request"
+            <a
+              href={mailtoLink('Contact Request')}
               className="px-4 py-2 rounded-full bg-background text-foreground hover:bg-muted transition-all duration-200 border border-border"
             >
               {t.contact}
@@ -68,15 +69,13 @@ export const Header = ({ language, onLanguageChange }: HeaderProps) => {
             </div>
 
             {/* CTA Button */}
-            <Button 
-              variant="cta" 
+            <Button
+              variant="cta"
               size="sm"
               asChild
               className="rounded-full"
             >
-              <a href="mailto:info@loelash.com?subject=Let's Work Together!">
-                {t.cta}
-              </a>
+              <a href={mailtoLink("Let's Work Together!")}>{t.cta}</a>
             </Button>
           </div>
         </nav>
