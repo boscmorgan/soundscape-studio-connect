@@ -1,59 +1,11 @@
 import { useState } from "react";
+import { Language, heroTranslations } from "@/lib/i18n";
 
 interface HeroSectionProps {
-  language: 'en' | 'it';
+  language: Language;
 }
 
-const translations = {
-  en: {
-    services: {
-      mixing: {
-        title: "Mixing",
-        description: "Transform your raw tracks into polished, professional recordings with precise balance and clarity.",
-        cta: "Get Mixed"
-      },
-      mastering: {
-        title: "Mastering", 
-        description: "Give your music the final touch with industry-standard mastering for streaming and physical release.",
-        cta: "Get Mastered"
-      },
-      production: {
-        title: "Production",
-        description: "From concept to completion, bring your musical vision to life with professional production.",
-        cta: "Start Producing"
-      },
-      musicianship: {
-        title: "Musicianship",
-        description: "Expert session work and musical arrangement to enhance your creative projects.",
-        cta: "Collaborate"
-      }
-    }
-  },
-  it: {
-    services: {
-      mixing: {
-        title: "Mixing",
-        description: "Trasforma le tue tracce grezze in registrazioni professionali con equilibrio e chiarezza precisi.",
-        cta: "Fai Mixare"
-      },
-      mastering: {
-        title: "Mastering",
-        description: "Dai alla tua musica il tocco finale con mastering professionale per streaming e rilascio fisico.",
-        cta: "Fai Masterizzare"
-      },
-      production: {
-        title: "Produzione",
-        description: "Dal concetto al completamento, porta in vita la tua visione musicale con produzione professionale.",
-        cta: "Inizia a Produrre"
-      },
-      musicianship: {
-        title: "Musicianship",
-        description: "Lavoro di sessione esperto e arrangiamento musicale per migliorare i tuoi progetti creativi.",
-        cta: "Collabora"
-      }
-    }
-  }
-};
+const translations = heroTranslations;
 
 export const HeroSection = ({ language }: HeroSectionProps) => {
   const [hoveredQuadrant, setHoveredQuadrant] = useState<string | null>(null);

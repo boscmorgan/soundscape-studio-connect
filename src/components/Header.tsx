@@ -1,27 +1,13 @@
 import { Button } from "@/components/ui/button";
+import { Language, headerTranslations } from "@/lib/i18n";
 
 interface HeaderProps {
-  language: 'en' | 'it';
-  onLanguageChange: (lang: 'en' | 'it') => void;
+  language: Language;
+  onLanguageChange: (lang: Language) => void;
 }
 
-const translations = {
-  en: {
-    music: "Music",
-    services: "Services", 
-    contact: "Contact",
-    cta: "Let's Work!"
-  },
-  it: {
-    music: "Musica",
-    services: "Servizi",
-    contact: "Contatto", 
-    cta: "Lavoriamo!"
-  }
-};
-
 export const Header = ({ language, onLanguageChange }: HeaderProps) => {
-  const t = translations[language];
+  const t = headerTranslations[language];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background backdrop-blur-md border-b border-border">

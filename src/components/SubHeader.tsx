@@ -1,17 +1,10 @@
+import { Language, subHeaderTranslations } from "@/lib/i18n";
+
 interface SubHeaderProps {
-  language: 'en' | 'it';
+  language: Language;
 }
 
-const translations = {
-  en: {
-    headline: "Craft your sound. Shape your future.",
-    subline: "Mixing. Mastering. Musicianship."
-  },
-  it: {
-    headline: "Crea il tuo suono. Modella il tuo futuro.",
-    subline: "Mixing. Mastering. Musicianship."
-  }
-};
+const translations = subHeaderTranslations;
 
 export const SubHeader = ({ language }: SubHeaderProps) => {
   const t = translations[language];
