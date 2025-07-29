@@ -92,7 +92,6 @@ export const heroTranslations = {
 
 export const trustTranslations = {
   en: {
-    title: 'Trusted by artists worldwide',
     brands: [
       'Soho House',
       'Native Instruments',
@@ -120,7 +119,6 @@ export const trustTranslations = {
     ]
   },
   it: {
-    title: 'La fiducia di artisti in tutto il mondo',
     brands: [
       'Soho House',
       'Native Instruments',

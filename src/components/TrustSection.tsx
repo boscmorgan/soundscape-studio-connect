@@ -25,24 +25,24 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
   return (
     <section className="py-16 bg-background text-foreground">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl font-semibold mb-8">
-            {t.title}
-          </h2>
-        </div>
 
         <div className="space-y-6">
           {/* Brands Row */}
-          <div className="overflow-hidden">
-            <div className="flex items-center gap-8 md:gap-12 whitespace-nowrap opacity-60 animate-scroll-left">
+          <div className="overflow-hidden group">
+            <div className="flex items-center gap-8 md:gap-12 whitespace-nowrap opacity-60 animate-scroll-left group-hover:[animation-play-state:paused]">
               {t.brands.map((client, index) => {
                 const src = brandLogos[client];
                 return src ? (
-                  <img key={`brand-${index}`} src={src} alt={client} className="h-8 w-auto" />
+                  <img
+                    key={`brand-${index}`}
+                    src={src}
+                    alt={client}
+                    className="h-8 w-auto transition-transform duration-300 hover:scale-110"
+                  />
                 ) : (
                   <div
                     key={`brand-${index}`}
-                    className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
+                    className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200 transition-transform duration-300 hover:scale-110"
                   >
                     {client}
                   </div>
@@ -56,13 +56,13 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
                     aria-hidden="true"
                     src={src}
                     alt={client}
-                    className="h-8 w-auto"
+                    className="h-8 w-auto transition-transform duration-300 hover:scale-110"
                   />
                 ) : (
                   <div
                     key={`brand-dup-${index}`}
                     aria-hidden="true"
-                    className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
+                    className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200 transition-transform duration-300 hover:scale-110"
                   >
                     {client}
                   </div>
