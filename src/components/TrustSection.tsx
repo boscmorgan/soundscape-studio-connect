@@ -87,18 +87,18 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
                     key={`testimonial-${index}`}
                     className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
                   >
-                    <div className="relative aspect-square overflow-hidden rounded-md">
+                    <div className="relative aspect-[2/3] overflow-hidden rounded-md">
                       <img
                         src={item.image}
                         alt={item.name}
                         className="object-cover w-full h-full"
                       />
                       <div className="absolute inset-0 bg-black/60 p-2 sm:p-3 md:p-4 flex flex-col justify-end text-white">
-                        <p className="text-[10px] sm:text-xs md:text-sm leading-snug whitespace-pre-line">
+                        <p className="text-[8px] sm:text-[10px] md:text-xs leading-snug whitespace-pre-line">
                           {item.quote}
                         </p>
                         {item.name && (
-                          <p className="mt-1 text-[10px] sm:text-xs font-medium">
+                          <p className="mt-1 text-[8px] sm:text-[10px] font-medium">
                             {item.name}
                           </p>
                         )}
