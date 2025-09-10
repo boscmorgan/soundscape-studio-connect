@@ -94,7 +94,7 @@ export const TrustAndTestimonialsSection = ({ language }: TrustAndTestimonialsSe
                       alt={item.name}
                       className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-.black/80 via-black/40 to-transparent backdrop-blur-[2px] opacity-90 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/20 backdrop-blur-[2px] opacity-95 group-hover:opacity-100 transition-opacity" />
                     <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-4 md:p-5 text-white">
                       <p className="text-xs sm:text-sm lg:text-xs leading-snug tracking-wide whitespace-pre-line break-words">
                         {item.quote}
