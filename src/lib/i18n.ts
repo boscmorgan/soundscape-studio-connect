@@ -108,14 +108,51 @@ export const trustTranslations = {
       'Molto Music Group',
       'pointblank Music School'
     ],
-    artists: [
-      'Pekodjinn',
-      'DijahSB',
-      'Brenda & MM',
-      'Palmaria',
-      'Taite Imogen',
-      'The Last Skeptik',
-      'Stanzah!'
+    testimonials: [
+      {
+        name: 'Brenda & Maria Manuela (Bogotá, Colombia)',
+        quote:
+          "Lorenzo is truly a beautiful soul. He's creative,\n" +
+          "genuine, and you can feel how much he pours into\n" +
+          "every project. His music has depth, honesty, and a lot of heart.\n\n" +
+          "It's so gratifying to work with people like him, people who make you feel seen, who are generous with their energy, and who remind you why we do this in the first place.",
+        image: '/testimonials/brenda-maria-placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      }
     ]
   },
   it: {
@@ -135,14 +172,51 @@ export const trustTranslations = {
       'Molto Music Group',
       'pointblank Music School'
     ],
-    artists: [
-      'Pekodjinn',
-      'DijahSB',
-      'Brenda & MM',
-      'Palmaria',
-      'Taite Imogen',
-      'The Last Skeptik',
-      'Stanzah!'
+    testimonials: [
+      {
+        name: 'Brenda & Maria Manuela (Bogotá, Colombia)',
+        quote:
+          "Lorenzo is truly a beautiful soul. He's creative,\n" +
+          "genuine, and you can feel how much he pours into\n" +
+          "every project. His music has depth, honesty, and a lot of heart.\n\n" +
+          "It's so gratifying to work with people like him, people who make you feel seen, who are generous with their energy, and who remind you why we do this in the first place.",
+        image: '/testimonials/brenda-maria-placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Coming soon',
+        quote: 'Placeholder testimonial.',
+        image: '/placeholder.svg'
+      }
     ]
   }
 };
