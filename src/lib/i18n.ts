@@ -112,10 +112,7 @@ export const trustTranslations = {
       {
         name: 'Brenda & Maria Manuela (Bogotá, Colombia)',
         quote:
-          "Lorenzo is truly a beautiful soul. He's creative,\n" +
-          "genuine, and you can feel how much he pours into\n" +
-          "every project. His music has depth, honesty, and a lot of heart.\n\n" +
-          "It's so gratifying to work with people like him, people who make you feel seen, who are generous with their energy, and who remind you why we do this in the first place.",
+          "Lorenzo is truly a beautiful soul. He's creative, genuine, and you can feel how much he pours into every project. His music has depth, honesty, and a lot of heart. It's so gratifying to work with people like him, people who make you feel seen, who are generous with their energy, and who remind you why we do this in the first place.",
         image: '/lovable-uploads/brenda.webp'
       },
       {
@@ -133,25 +130,25 @@ export const trustTranslations = {
       {
         name: 'Obeka (Manchester, England)',
         quote:
-          'My EP was handled superbly, With percussive and\nlive elements mixed and colourised so well it propelled the sound dynamics to a whole new level.',
+          'My EP was handled superbly, With percussive and live elements mixed and colourised so well it propelled the sound dynamics to a whole new level.',
         image: '/lovable-uploads/obeka.webp'
       },
       {
         name: 'Palmaria (Lerici, Italy)',
         quote:
-          "We worked with LOELASH in many capacities, as a\nremixer, an artist collaborator and a mix / mastering engineer and we couldn't recommend him enough!\nHis musical and technical skills and most importantly his love and passion for music and for achieving great results are simply unmatched.",
+          "We worked with LOELASH in many capacities, as a remixer, an artist collaborator and a mix / mastering engineer and we couldn't recommend him enough! His musical and technical skills and most importantly his love and passion for music and for achieving great results are simply unmatched.",
         image: '/lovable-uploads/palmaria.webp'
       },
       {
         name: 'Pekodjinn (Geneva, Switzerland)',
         quote:
-          'My friend work with Loe for his ep and I loved the mix and mastering. I wanted to try for my Ep and it worked so well. The process was fast and clean. He listenned carrefully to my feedbacks and he responded with precision. Highly recommended\n!!!',
+          'My friend work with Loe for his ep and I loved the mix and mastering. I wanted to try for my Ep and it worked so well. The process was fast and clean. He listenned carrefully to my feedbacks and he responded with precision. Highly recommended!!!',
         image: '/lovable-uploads/pekodjinn.webp'
       },
       {
         name: 'Taite Imogen (London, England)',
         quote:
-          "Working with Loelash for the past 5 years has been such an amazing and inspiring experience. His dedication to his craft and creativity is infectious and he knows how to bring the best out of and push you as an artist. I always feel confident to try new things and experiment without judgement and his talent and knowledge allows you to do this at the highest level.\nI'm grateful to work with such a skilled producer and artist that understands my creative language and helps me build my world with enthusiasm like it's his own.",
+          "Working with Loelash for the past 5 years has been such an amazing and inspiring experience. His dedication to his craft and creativity is infectious and he knows how to bring the best out of and push you as an artist. I always feel confident to try new things and experiment without judgement and his talent and knowledge allows you to do this at the highest level. I'm grateful to work with such a skilled producer and artist that understands my creative language and helps me build my world with enthusiasm like it's his own.",
         image: '/lovable-uploads/imogen.webp'
       },
       {
