@@ -108,14 +108,58 @@ export const trustTranslations = {
       'Molto Music Group',
       'pointblank Music School'
     ],
-    artists: [
-      'Pekodjinn',
-      'DijahSB',
-      'Brenda & MM',
-      'Palmaria',
-      'Taite Imogen',
-      'The Last Skeptik',
-      'Stanzah!'
+    testimonials: [
+      {
+        name: 'Brenda & Maria Manuela (Bogotá, Colombia)',
+        quote:
+          "Lorenzo is truly a beautiful soul. He's creative,\n" +
+          "genuine, and you can feel how much he pours into\n" +
+          "every project. His music has depth, honesty, and a lot of heart.\n\n" +
+          "It's so gratifying to work with people like him, people who make you feel seen, who are generous with their energy, and who remind you why we do this in the first place.",
+        image: '/testimonials/brenda-maria-placeholder.svg'
+      },
+      {
+        name: 'DijahSB (Toronto, Canada)',
+        quote:
+          'Loelash is a professional, gets you all you need on time, is very polite and all around an amazing engineer and producer. he is extremely reliable and worth the investment to get the best out of your work.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'DJ Caio Santos (São Paulo, Brazil)',
+        quote:
+          'Boa minha família, eu sou o Caio Santos, dj aqui do Brasil e, trabalhar com o Loe é incrível. Ele é muito didático e dedicado com a música, todas as vezes que trabalhamos juntos eu aprendi muito. Em resumo confio muito minhas músicas com a mão dele envolvida.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Obeka (Manchester, England)',
+        quote:
+          'My EP was handled superbly, With percussive and\nlive elements mixed and colourised so well it propelled the sound dynamics to a whole new level.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Palmaria (Lerici, Italy)',
+        quote:
+          "We worked with LOELASH in many capacities, as a\nremixer, an artist collaborator and a mix / mastering engineer and we couldn't recommend him enough!\nHis musical and technical skills and most importantly his love and passion for music and for achieving great results are simply unmatched.",
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Pekodjinn (Geneva, Switzerland)',
+        quote:
+          'My friend work with Loe for his ep and I loved the mix and mastering. I wanted to try for my Ep and it worked so well. The process was fast and clean. He listenned carrefully to my feedbacks and he responded with precision. Highly recommended\n!!!',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Taite Imogen (London, England)',
+        quote:
+          "Working with Loelash for the past 5 years has been such an amazing and inspiring experience. His dedication to his craft and creativity is infectious and he knows how to bring the best out of and push you as an artist. I always feel confident to try new things and experiment without judgement and his talent and knowledge allows you to do this at the highest level.\nI'm grateful to work with such a skilled producer and artist that understands my creative language and helps me build my world with enthusiasm like it's his own.",
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'The Last Skeptik (Los Angeles, California)',
+        quote:
+          'Love working with Loe. both as session musician and as a producer/sound engineer, he makes things sound bloody fantastic every damn time!',
+        image: '/placeholder.svg'
+      }
     ]
   },
   it: {
@@ -135,14 +179,58 @@ export const trustTranslations = {
       'Molto Music Group',
       'pointblank Music School'
     ],
-    artists: [
-      'Pekodjinn',
-      'DijahSB',
-      'Brenda & MM',
-      'Palmaria',
-      'Taite Imogen',
-      'The Last Skeptik',
-      'Stanzah!'
+    testimonials: [
+      {
+        name: 'Brenda & Maria Manuela (Bogotá, Colombia)',
+        quote:
+          "Lorenzo is truly a beautiful soul. He's creative,\n" +
+          "genuine, and you can feel how much he pours into\n" +
+          "every project. His music has depth, honesty, and a lot of heart.\n\n" +
+          "It's so gratifying to work with people like him, people who make you feel seen, who are generous with their energy, and who remind you why we do this in the first place.",
+        image: '/testimonials/brenda-maria-placeholder.svg'
+      },
+      {
+        name: 'DijahSB (Toronto, Canada)',
+        quote:
+          'Loelash is a professional, gets you all you need on time, is very polite and all around an amazing engineer and producer. he is extremely reliable and worth the investment to get the best out of your work.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'DJ Caio Santos (São Paulo, Brazil)',
+        quote:
+          'Boa minha família, eu sou o Caio Santos, dj aqui do Brasil e, trabalhar com o Loe é incrível. Ele é muito didático e dedicado com a música, todas as vezes que trabalhamos juntos eu aprendi muito. Em resumo confio muito minhas músicas com a mão dele envolvida.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Obeka (Manchester, England)',
+        quote:
+          'My EP was handled superbly, With percussive and\nlive elements mixed and colourised so well it propelled the sound dynamics to a whole new level.',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Palmaria (Lerici, Italy)',
+        quote:
+          "We worked with LOELASH in many capacities, as a\nremixer, an artist collaborator and a mix / mastering engineer and we couldn't recommend him enough!\nHis musical and technical skills and most importantly his love and passion for music and for achieving great results are simply unmatched.",
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Pekodjinn (Geneva, Switzerland)',
+        quote:
+          'My friend work with Loe for his ep and I loved the mix and mastering. I wanted to try for my Ep and it worked so well. The process was fast and clean. He listenned carrefully to my feedbacks and he responded with precision. Highly recommended\n!!!',
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'Taite Imogen (London, England)',
+        quote:
+          "Working with Loelash for the past 5 years has been such an amazing and inspiring experience. His dedication to his craft and creativity is infectious and he knows how to bring the best out of and push you as an artist. I always feel confident to try new things and experiment without judgement and his talent and knowledge allows you to do this at the highest level.\nI'm grateful to work with such a skilled producer and artist that understands my creative language and helps me build my world with enthusiasm like it's his own.",
+        image: '/placeholder.svg'
+      },
+      {
+        name: 'The Last Skeptik (Los Angeles, California)',
+        quote:
+          'Love working with Loe. both as session musician and as a producer/sound engineer, he makes things sound bloody fantastic every damn time!',
+        image: '/placeholder.svg'
+      }
     ]
   }
 };

@@ -1,4 +1,11 @@
 import { Language, trustTranslations } from "@/lib/i18n";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface TrustSectionProps {
   language: Language;
@@ -71,27 +78,38 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
             </div>
           </div>
 
-          {/* Artists Row */}
-          <div className="overflow-hidden">
-            <div className="flex items-center gap-8 md:gap-12 whitespace-nowrap opacity-60 animate-scroll-right">
-              {t.artists.map((client, index) => (
-                <div
-                  key={`artist-${index}`}
-                  className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
-                >
-                  {client}
-                </div>
-              ))}
-              {t.artists.map((client, index) => (
-                <div
-                  key={`artist-dup-${index}`}
-                  aria-hidden="true"
-                  className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200"
-                >
-                  {client}
-                </div>
-              ))}
-            </div>
+          {/* Testimonials Carousel */}
+          <div className="relative">
+            <Carousel opts={{ align: "start" }} className="w-full">
+              <CarouselContent>
+                {t.testimonials.map((item, index) => (
+                  <CarouselItem
+                    key={`testimonial-${index}`}
+                    className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                  >
+                    <div className="relative aspect-[2/3] overflow-hidden rounded-md">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="object-cover w-full h-full"
+                      />
+                      <div className="absolute inset-0 bg-black/60 p-2 sm:p-3 md:p-4 flex flex-col justify-end text-white">
+                        <p className="text-[8px] sm:text-[10px] md:text-xs leading-snug whitespace-pre-line">
+                          {item.quote}
+                        </p>
+                        {item.name && (
+                          <p className="mt-1 text-[8px] sm:text-[10px] font-medium">
+                            {item.name}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-2 h-6 w-6 bg-black/50 text-white hover:bg-black/70 border-none" />
+              <CarouselNext className="right-2 h-6 w-6 bg-black/50 text-white hover:bg-black/70 border-none" />
+            </Carousel>
           </div>
         </div>
       </div>
