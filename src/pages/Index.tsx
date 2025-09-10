@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Header } from "@/components/Header";
 import { SubHeader } from "@/components/SubHeader";
 import { HeroSection } from "@/components/HeroSection";
-import { TrustSection } from "@/components/TrustSection";
+import { TrustAndTestimonialsSection } from "@/components/TrustAndTestimonialsSection";
 import { AboutSection } from "@/components/AboutSection";
 import { Footer } from "@/components/Footer";
 import { ContactDialog } from "@/components/ContactDialog";
@@ -34,7 +34,7 @@ const Index = () => {
       <Header language={language} onLanguageChange={setLanguage} onContact={handleContact} />
       <SubHeader language={language} />
       <HeroSection language={language} onContact={handleContact} />
-      <TrustSection language={language} />
+      <TrustAndTestimonialsSection language={language} />
       <AboutSection language={language} />
       <Footer language={language} onContact={handleContact} />
       <ContactDialog
