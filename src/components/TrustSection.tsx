@@ -36,7 +36,7 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
         <div className="space-y-6">
           {/* Brands Row */}
           <div className="overflow-hidden group">
-            <div className="flex items-center gap-8 md:gap-12 whitespace-nowrap opacity-60 animate-scroll-left group-hover:[animation-play-state:paused]">
+            <div className="flex items-center gap-8 md:gap-12 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity duration-500 animate-scroll-left group-hover:[animation-play-state:paused]">
               {t.brands.map((client, index) => {
                 const src = brandLogos[client];
                 return src ? (
@@ -44,12 +44,12 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
                     key={`brand-${index}`}
                     src={src}
                     alt={client}
-                    className="h-8 w-auto transition-transform duration-300 hover:scale-110"
+                    className="h-8 w-auto transition-all duration-300 hover:scale-110 filter grayscale hover:grayscale-0"
                   />
                 ) : (
                   <div
                     key={`brand-${index}`}
-                    className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200 transition-transform duration-300 hover:scale-110"
+                    className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-all duration-300 hover:scale-110"
                   >
                     {client}
                   </div>
@@ -63,13 +63,13 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
                     aria-hidden="true"
                     src={src}
                     alt={client}
-                    className="h-8 w-auto transition-transform duration-300 hover:scale-110"
+                    className="h-8 w-auto transition-all duration-300 hover:scale-110 filter grayscale hover:grayscale-0"
                   />
                 ) : (
                   <div
                     key={`brand-dup-${index}`}
                     aria-hidden="true"
-                    className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-colors duration-200 transition-transform duration-300 hover:scale-110"
+                    className="text-sm md:text-base font-medium text-black/70 hover:text-black transition-all duration-300 hover:scale-110"
                   >
                     {client}
                   </div>
@@ -85,20 +85,21 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
                 {t.testimonials.map((item, index) => (
                   <CarouselItem
                     key={`testimonial-${index}`}
-                    className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                    className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 p-2"
                   >
-                    <div className="relative aspect-[2/3] overflow-hidden rounded-md">
+                    <div className="group relative aspect-[2/3] overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="object-cover w-full h-full"
+                        className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm p-2 sm:p-3 md:p-4 flex flex-col justify-end text-white">
-                        <p className="text-xs sm:text-sm md:text-base leading-snug whitespace-pre-line">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-[2px] opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-5 md:p-6 text-white">
+                        <p className="text-sm sm:text-base md:text-lg leading-relaxed tracking-wide whitespace-pre-line">
                           {item.quote}
                         </p>
                         {item.name && (
-                          <p className="mt-1 text-xs sm:text-sm md:text-base font-medium">
+                          <p className="mt-2 text-xs sm:text-sm md:text-base font-semibold tracking-wide">
                             {item.name}
                           </p>
                         )}
@@ -107,8 +108,8 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-2 h-6 w-6 bg-black/50 text-white hover:bg-black/70 border-none" />
-              <CarouselNext className="right-2 h-6 w-6 bg-black/50 text-white hover:bg-black/70 border-none" />
+              <CarouselPrevious className="left-2 h-6 w-6 bg-black/50 text-white hover:bg-black/70 border-none backdrop-blur-sm transition-transform duration-300 hover:scale-110" />
+              <CarouselNext className="right-2 h-6 w-6 bg-black/50 text-white hover:bg-black/70 border-none backdrop-blur-sm transition-transform duration-300 hover:scale-110" />
             </Carousel>
           </div>
         </div>
