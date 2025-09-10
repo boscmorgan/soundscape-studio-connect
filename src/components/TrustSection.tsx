@@ -30,11 +30,9 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
   const t = translations[language];
 
   return (
-    <section className="py-16 bg-background text-foreground">
-      <div className="container mx-auto px-6">
-
-        <div className="space-y-6">
-          {/* Brands Row */}
+    <section className="py-16 bg-background text-foreground overflow-x-hidden">
+      <div className="space-y-6">
+        {/* Brands Row */}
           <div className="overflow-x-hidden overflow-y-visible group">
             <div className="flex items-center gap-8 md:gap-12 whitespace-nowrap opacity-60 hover:opacity-100 transition-opacity duration-500 animate-scroll-left group-hover:[animation-play-state:paused]">
               {t.brands.map((client, index) => {
@@ -79,15 +77,15 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
           </div>
 
           {/* Testimonials Carousel */}
-          <div className="relative">
+          <div className="relative overflow-x-hidden">
             <Carousel opts={{ align: "start" }} className="w-full">
-              <CarouselContent>
+              <CarouselContent className="-mx-2">
                 {t.testimonials.map((item, index) => (
                   <CarouselItem
                     key={`testimonial-${index}`}
-                    className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 p-2"
+                    className="px-2 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
                   >
-                    <div className="group relative aspect-[2/3] overflow-hidden rounded-xl shadow-md transition-all duration-500 hover:shadow-xl">
+                    <div className="group relative aspect-[2/3] overflow-hidden rounded-xl shadow-md transition-transform duration-500">
                       <img
                         src={item.image}
                         alt={item.name}
@@ -113,7 +111,6 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
             </Carousel>
           </div>
         </div>
-      </div>
-    </section>
-  );
-};
+      </section>
+    );
+  };

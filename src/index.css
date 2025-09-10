@@ -4,3 +4,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  @media (min-width: 768px) {
+    .md\:text-base {
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+  }
+}
