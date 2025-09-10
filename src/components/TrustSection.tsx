@@ -93,12 +93,12 @@ export const TrustSection = ({ language }: TrustSectionProps) => {
                         alt={item.name}
                         className="object-cover w-full h-full"
                       />
-                      <div className="absolute inset-0 bg-black/60 p-2 sm:p-3 md:p-4 flex flex-col justify-end text-white">
-                        <p className="text-[8px] sm:text-[10px] md:text-xs leading-snug whitespace-pre-line">
+                      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm p-2 sm:p-3 md:p-4 flex flex-col justify-end text-white">
+                        <p className="text-xs sm:text-sm md:text-base leading-snug whitespace-pre-line">
                           {item.quote}
                         </p>
                         {item.name && (
-                          <p className="mt-1 text-[8px] sm:text-[10px] font-medium">
+                          <p className="mt-1 text-xs sm:text-sm md:text-base font-medium">
                             {item.name}
                           </p>
                         )}
