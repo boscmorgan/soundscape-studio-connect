@@ -23,7 +23,7 @@ const brandLogos: Record<string, string> = {
   VICE: "/brand_logos/vice.png",
   "The Hoxton": "/brand_logos/hoxton.svg.png",
   "Pirate Studios": "/brand_logos/pirate_studios.png",
-  "pointblank Music School": "/brand_logos/pointblank.png",
+  "Point Blank Music School": "/brand_logos/pointblank.png",
 };
 
 export const TrustAndTestimonialsSection = ({ language }: TrustAndTestimonialsSectionProps) => {
