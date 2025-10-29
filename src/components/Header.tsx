@@ -50,7 +50,7 @@ export const Header = ({ language, onLanguageChange, onContact }: HeaderProps) =
             </button>
           </div>
 
-          {/* Navigation */}
+          {/* Social links (main navigation items could replace this container) */}
           <div className="hidden md:flex items-center space-x-4">
             {socialLinks.map((social) => {
               const Icon = social.icon;
