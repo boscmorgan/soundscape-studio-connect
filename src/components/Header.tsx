@@ -6,11 +6,10 @@ import { SiTiktok } from "react-icons/si";
 
 interface HeaderProps {
   language: Language;
-  onLanguageChange: (lang: Language) => void;
   onContact: (subject: string) => void;
 }
 
-export const Header = ({ language, onLanguageChange, onContact }: HeaderProps) => {
+export const Header = ({ language, onContact }: HeaderProps) => {
   const t = headerTranslations[language];
 
   const socialLinks = [
@@ -75,28 +74,7 @@ export const Header = ({ language, onLanguageChange, onContact }: HeaderProps) =
           </div>
 
           {/* Right side */}
-          <div className="flex items-center space-x-4">
-            {/* Language Toggle */}
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => onLanguageChange('en')}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  language === 'en' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                EN
-              </button>
-              <span className="text-muted-foreground">|</span>
-              <button
-                onClick={() => onLanguageChange('it')}
-                className={`text-sm font-medium transition-colors duration-200 ${
-                  language === 'it' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                IT
-              </button>
-            </div>
-
+          <div className="flex items-center">
             {/* CTA Button */}
             <Button
               variant="cta"
