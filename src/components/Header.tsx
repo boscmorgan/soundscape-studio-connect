@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Language, headerTranslations } from "@/lib/i18n";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaYoutube, FaSoundcloud } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
 
 
@@ -28,6 +28,11 @@ export const Header = ({ language, onLanguageChange, onContact }: HeaderProps) =
       icon: SiTiktok,
       href: "https://www.tiktok.com/@loelashmusic",
       label: "TikTok",
+    },
+    {
+      icon: FaSoundcloud,
+      href: "https://soundcloud.com/loelash",
+      label: "SoundCloud",
     },
   ];
 
