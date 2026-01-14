@@ -25,7 +25,8 @@ interface MobileSectionProps {
   onContact: (subject: string) => void;
 }
 
-const heroImage = '/lovable-uploads/d60cfc4b-6c44-42b3-8a9d-f53c0c728f93.png';
+const heroImages = ['/image_color.jpg', '/image_bw.jpg'];
+const heroImage = heroImages[Math.floor(Math.random() * heroImages.length)];
 
 const MobileServiceSection = ({ quadrant, index, activeIndex, onVisible, onContact }: MobileSectionProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
