@@ -8,7 +8,7 @@ describe("mailtoLink", () => {
 
     const result = mailtoLink(subject)
 
-    expect(result).toBe(`mailto:info@loelash.com?subject=${encodeURIComponent(subject)}`)
+    expect(result).toBe(`mailto:loe@loelashmusic.com?subject=${encodeURIComponent(subject)}`)
   })
 
   it("encodes special characters in the subject", () => {
@@ -16,7 +16,7 @@ describe("mailtoLink", () => {
 
     const result = mailtoLink(subject)
 
-    expect(result).toBe(`mailto:info@loelash.com?subject=${encodeURIComponent(subject)}`)
+    expect(result).toBe(`mailto:loe@loelashmusic.com?subject=${encodeURIComponent(subject)}`)
     expect(result).toContain("%26")
     expect(result).toContain("%3F")
   })
