@@ -1,23 +1,36 @@
-import { describe, it, expect } from "vitest"
+import { describe, it, expect } from 'vitest';
 
-import { mailtoLink } from "./utils"
+import { mailtoLink } from './utils';
+import { isValidEmail } from './newsletter';
+import { site } from '@/config/site';
 
-describe("mailtoLink", () => {
-  it("returns mailto link with encoded subject containing spaces", () => {
-    const subject = "General Inquiry About Services"
+describe('mailtoLink', () => {
+  it('encodes the subject', () => {
+    const result = mailtoLink('Collaborazione & Supporto?');
 
-    const result = mailtoLink(subject)
+    expect(result.startsWith(`mailto:${site.email}?`)).toBe(true);
+    expect(result).toContain('subject=Collaborazione+%26+Supporto%3F');
+  });
 
-    expect(result).toBe(`mailto:loe@loelashmusic.com?subject=${encodeURIComponent(subject)}`)
-  })
+  it('omits the body when none is given', () => {
+    expect(mailtoLink('Ciao')).not.toContain('body=');
+  });
 
-  it("encodes special characters in the subject", () => {
-    const subject = "Collaboration & Support?"
+  it('includes an encoded body when given', () => {
+    const result = mailtoLink('Ciao', 'Riga uno\nRiga due');
 
-    const result = mailtoLink(subject)
+    expect(result).toContain('body=Riga+uno%0ARiga+due');
+  });
+});
 
-    expect(result).toBe(`mailto:loe@loelashmusic.com?subject=${encodeURIComponent(subject)}`)
-    expect(result).toContain("%26")
-    expect(result).toContain("%3F")
-  })
-})
+describe('isValidEmail', () => {
+  it.each(['a@b.co', 'lorenzo.lucchetti@example.com', ' padded@example.org '])(
+    'accepts %s',
+    (value) => expect(isValidEmail(value)).toBe(true),
+  );
+
+  it.each(['', 'not-an-email', 'missing@tld', 'two@@at.com', 'spa ce@x.com'])(
+    'rejects %s',
+    (value) => expect(isValidEmail(value)).toBe(false),
+  );
+});

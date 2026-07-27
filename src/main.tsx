@@ -1,9 +1,6 @@
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import { initCacheManager } from './lib/cacheManager'
+import { createRoot } from 'react-dom/client';
 
-// Initialize cache manager to handle version-based cache busting
-initCacheManager();
+import App from './App.tsx';
+import './index.css';
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById('root')!).render(<App />);

@@ -1,32 +1,36 @@
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Language, contactFormTranslations } from "@/lib/i18n";
-import { CONTACT_EMAIL } from "@/lib/utils";
+import { useState, type FormEvent } from 'react';
+
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { mailtoLink } from '@/lib/utils';
+import { contact as t } from '@/content';
 
 interface ContactDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  subject: string;
-  language: Language;
 }
 
-export const ContactDialog = ({ open, onOpenChange, subject, language }: ContactDialogProps) => {
-  const t = contactFormTranslations[language];
-  const [email, setEmail] = useState("");
-  const [localSubject, setLocalSubject] = useState(subject);
-  const [message, setMessage] = useState("");
+/**
+ * Contact overlay. Composes a mailto: so there is no backend to maintain and
+ * no inbox credentials in the client.
+ */
+export const ContactDialog = ({ open, onOpenChange }: ContactDialogProps) => {
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    setLocalSubject(subject);
-  }, [subject]);
-
-  const handleSend = () => {
-    const body = `From: ${email}\n\n${message}`;
-    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(localSubject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    const body = email ? `From: ${email}\n\n${message}` : message;
+    window.location.href = mailtoLink(subject || t.defaultSubject, body);
     onOpenChange(false);
   };
 
@@ -36,27 +40,31 @@ export const ContactDialog = ({ open, onOpenChange, subject, language }: Contact
         <DialogHeader>
           <DialogTitle>{t.title}</DialogTitle>
         </DialogHeader>
-        <div className="space-y-4">
-          <Input
-            placeholder={t.email}
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            placeholder={t.subject}
-            value={localSubject}
-            onChange={(e) => setLocalSubject(e.target.value)}
-          />
-          <Textarea
-            placeholder={t.message}
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-        </div>
-        <DialogFooter className="mt-4">
-          <Button onClick={handleSend}>{t.send}</Button>
-        </DialogFooter>
+        <form onSubmit={handleSubmit}>
+          <div className="space-y-[--space-sm]">
+            <Input
+              type="email"
+              autoComplete="email"
+              placeholder={t.email}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <Input
+              placeholder={t.subject}
+              value={subject}
+              onChange={(event) => setSubject(event.target.value)}
+            />
+            <Textarea
+              rows={5}
+              placeholder={t.message}
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
+            />
+          </div>
+          <DialogFooter className="mt-[--space-md]">
+            <Button type="submit">{t.send}</Button>
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

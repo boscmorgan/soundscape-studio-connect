@@ -1,0 +1,153 @@
+/**
+ * Design tokens — the single vocabulary the whole site is built from.
+ *
+ * This file is the contract with the design system: every colour, type step,
+ * rhythm value and easing curve used in a component resolves to a token here.
+ * Components should never hard-code a hex, px size or duration. Retuning the
+ * visual identity means editing this file, not the components.
+ *
+ * Tiers:
+ *   1. Primitives  — raw values, no meaning attached (`--ink-*`, `--paper-*`)
+ *   2. Semantic    — role-based aliases the UI consumes (`--surface`, `--text`)
+ *   3. Component   — the few knobs specific to one element (`--wordmark-*`)
+ *
+ * shadcn/ui reads a fixed set of HSL-triplet variable names, so the semantic
+ * tier below doubles as its theme. Keep those names intact.
+ */
+
+@layer base {
+  :root {
+    /* ---------------------------------------------------------------- */
+    /* 1. Primitives                                                     */
+    /* ---------------------------------------------------------------- */
+
+    /* Neutral ramp, expressed as HSL triplets for shadcn compatibility. */
+    --ink-900: 0 0% 0%;
+    --ink-800: 0 0% 4%;
+    --ink-700: 0 0% 8%;
+    --ink-600: 0 0% 14%;
+    --ink-500: 0 0% 24%;
+    --ink-400: 0 0% 40%;
+    --ink-300: 0 0% 58%;
+    --ink-200: 0 0% 74%;
+    --ink-100: 0 0% 88%;
+    --paper: 0 0% 100%;
+
+    --signal-danger: 0 72% 51%;
+
+    /* ---------------------------------------------------------------- */
+    /* 2. Semantic — shadcn/ui theme surface                             */
+    /* ---------------------------------------------------------------- */
+
+    --background: var(--ink-900);
+    --foreground: var(--paper);
+
+    --card: var(--ink-800);
+    --card-foreground: var(--paper);
+
+    --popover: var(--ink-800);
+    --popover-foreground: var(--paper);
+
+    /* "primary" is the inverted pill/button treatment: white on black. */
+    --primary: var(--paper);
+    --primary-foreground: var(--ink-900);
+
+    --secondary: var(--ink-700);
+    --secondary-foreground: var(--paper);
+
+    --muted: var(--ink-700);
+    --muted-foreground: var(--ink-300);
+
+    --accent: var(--ink-600);
+    --accent-foreground: var(--paper);
+
+    --destructive: var(--signal-danger);
+    --destructive-foreground: var(--paper);
+
+    --border: var(--ink-600);
+    --input: var(--ink-600);
+    --ring: var(--ink-200);
+
+    --radius: 0.5rem;
+
+    /* ---------------------------------------------------------------- */
+    /* 3. Typography                                                     */
+    /* ---------------------------------------------------------------- */
+
+    /*
+     * The brand voice is carried by the wordmark artwork, so the site needs
+     * only one text face. Swap this to change every string on the site.
+     */
+    --font-body: 'Helvetica Neue', Helvetica, system-ui, -apple-system,
+      'Segoe UI', sans-serif;
+
+    /* Fluid steps: clamp(min, preferred, max) — no breakpoint jumps. */
+    --text-nav: clamp(0.75rem, 0.68rem + 0.35vw, 0.9rem);
+    --text-caption: clamp(0.7rem, 0.65rem + 0.25vw, 0.8rem);
+    --text-body: clamp(0.95rem, 0.9rem + 0.3vw, 1.075rem);
+    --text-lead: clamp(1.05rem, 0.95rem + 0.5vw, 1.25rem);
+    --text-heading: clamp(1.75rem, 1.2rem + 2.5vw, 3rem);
+
+    --tracking-nav: 0.24em;
+    --tracking-tight: -0.02em;
+    --leading-body: 1.65;
+
+    /* ---------------------------------------------------------------- */
+    /* 4. Layout & rhythm                                                */
+    /* ---------------------------------------------------------------- */
+
+    /* Safe inset from the viewport edge for the fixed one-pager furniture. */
+    --edge-x: clamp(1.25rem, 4vw, 3.5rem);
+    --edge-y: clamp(1.25rem, 3.5vh, 2.75rem);
+
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1.25rem;
+    --space-lg: 2rem;
+    --space-xl: 3.5rem;
+    --space-2xl: 6rem;
+
+    --measure: 68ch;
+
+    /* ---------------------------------------------------------------- */
+    /* 5. Motion                                                         */
+    /* ---------------------------------------------------------------- */
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --duration-fast: 200ms;
+    --duration-base: 400ms;
+    --duration-slow: 900ms;
+
+    /* ---------------------------------------------------------------- */
+    /* 6. Component tokens                                               */
+    /* ---------------------------------------------------------------- */
+
+    /*
+     * Wordmark artwork is sized by width; height follows its 5.36:1 ratio.
+     * Per-instance overrides use [--wordmark-width:…].
+     */
+    --wordmark-width: clamp(17rem, 62vw, 52rem);
+
+    /*
+     * Nudge below dead-centre on the home page so the mark crosses the
+     * subject's neckline rather than their face.
+     */
+    --wordmark-offset-y: clamp(0px, 7vh, 84px);
+
+    /* Keeps the white mark legible over the lighter areas of the portrait. */
+    --wordmark-shadow: drop-shadow(0 2px 18px hsl(var(--ink-900) / 0.45));
+
+    /* Scrim over the portrait so white furniture stays legible. */
+    --hero-scrim: linear-gradient(
+      to bottom,
+      hsl(var(--ink-900) / 0.5) 0%,
+      hsl(var(--ink-900) / 0.15) 32%,
+      hsl(var(--ink-900) / 0.2) 62%,
+      hsl(var(--ink-900) / 0.65) 100%
+    );
+
+    --marquee-duration: 90s;
+  }
+}

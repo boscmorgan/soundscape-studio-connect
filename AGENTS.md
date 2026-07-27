@@ -1,57 +1,50 @@
 # AGENTS.md
 
-## Project Overview
+Conventions for working in this repo. See `README.md` for the tour.
 
-This project is a web application built with Vite, TypeScript, React, shadcn-ui, and Tailwind CSS. It is managed via Lovable, a platform for collaborative development and deployment.
+## Non-negotiables
 
-## Editing Instructions
+- **Italian only.** No `en` strings, no language switch, no locale detection.
+  The brand name `lorenzo1UP` and the nav labels (`Bio`, `Music`, `Contact`)
+  are deliberately English — leave them.
+- **`/` must never scroll.** It is a fixed one-pager. Any change there must keep
+  `document.documentElement.scrollHeight === window.innerHeight` at 320px wide
+  and up. Check both axes.
+- **The brand is `lorenzo1UP`**, lower-case `l`, upper-case `UP`. It was
+  previously "Loelash"; that name must not reappear in copy. The social handles
+  and contact address still contain `loelash` on purpose — those accounts have
+  not been renamed.
 
-You can edit this project in several ways:
+## Where things go
 
-### 1. Using Lovable
-- Visit the [Lovable Project Page](https://lovable.dev/projects/9e4cf23f-9c8c-4e75-9f09-1bca02391188).
-- Prompt changes directly in the Lovable interface.
-- Changes are automatically committed to this repository.
+| Adding…                    | Goes in                    |
+| -------------------------- | -------------------------- |
+| User-visible text          | `src/content/index.ts`     |
+| A colour, size, duration   | `src/styles/tokens.css`    |
+| An external URL or handle  | `src/config/site.ts`       |
 
-### 2. Using Your Preferred IDE
-- Clone the repository:
-  ```sh
-  git clone <YOUR_GIT_URL>
-  cd <YOUR_PROJECT_NAME>
-  npm i
-  npm run dev
-  ```
-- Make changes locally and push them to the repository.
-- Changes will be reflected in Lovable.
+Components consume tokens through Tailwind utilities (`text-foreground`,
+`duration-fast`) or arbitrary-value syntax (`px-[--edge-x]`,
+`text-[length:var(--text-body)]`). Do not write raw hex, px or ms in a component.
 
-### 3. Editing Directly in GitHub
-- Navigate to the file you want to edit.
-- Click the pencil icon to edit.
-- Commit your changes.
+Two Tailwind gotchas this repo has already hit:
 
-### 4. Using GitHub Codespaces
-- Launch a new Codespace from the repository page.
-- Edit files and commit/push changes.
+- `duration-[var(--x)]` and `ease-[var(--x)]` are **ambiguous** (transition vs
+  animation). Use the named scale — `duration-fast`, `ease-out` — which
+  `tailwind.config.ts` binds to the tokens.
+- `@import` must precede `@tailwind` in `src/index.css`, or the build errors.
 
-## Deployment
-- Deploy via Lovable: Open Lovable and use Share -> Publish.
+## Dependencies
 
-## Custom Domain
-- Connect a custom domain via Project > Settings > Domains in Lovable.
-- See [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide) for details.
+The dependency list was cut from 46 to 12; `src/components/ui/` was cut from 50
+files to 5. Do not re-add a shadcn component "just in case" — add it when a
+component actually imports it, and delete it when the last importer goes.
 
-## Technologies Used
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Before calling it done
 
-## Translation Guidelines
-- The application currently supports English (`en`) and Italian (`it`).
-- Whenever you modify any user-facing text or add new UI features, update the
-  translation dictionaries in `src/lib/i18n.ts` so both languages stay
-  synchronized.
+```sh
+npm run lint && npm test && npm run build
+```
 
----
-For more details, see the README.md file or visit the Lovable documentation.
+`npm run build` must be warning-free. A Tailwind "ambiguous class" warning means
+a class silently did not apply — treat it as an error, not noise.
