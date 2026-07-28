@@ -46,7 +46,26 @@
       "Bash(pkill -f \"vite preview\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4173/)",
       "Bash(curl -s -o /dev/null -w \"wordmark %{http_code} %{size_download}b\\\\n\" http://localhost:4173/brand/wordmark-1600.png)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(node -e \"const p=require\\('./package.json'\\);console.log\\('deps',Object.keys\\(p.dependencies\\).length,'dev',Object.keys\\(p.devDependencies\\).length\\)\")",
+      "Bash(git commit *)",
+      "Bash(node -e \"const p=require\\('./package.json'\\);console.log\\('main:',p.main,'module:',p.module,'exports:',JSON.stringify\\(p.exports\\),'private:',p.private\\)\")",
+      "Bash(node .ds-sync/package-build.mjs --help)",
+      "Bash(node .ds-sync/package-build.mjs --config .design-sync/config.json --node-modules ./node_modules --out ./ds-bundle)",
+      "Bash(echo \"EXIT=$?\")",
+      "Read(//Users/morganbosc/.cache/**)",
+      "Read(//Applications/**)",
+      "Bash(node -e \"console.log\\('playwright-core', require\\('./node_modules/playwright-core/package.json'\\).version\\)\")",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('.design-sync/config.json','utf8'\\)\\);console.log\\('config JSON valid'\\)\")",
+      "Bash(node .ds-sync/package-build.mjs --config .design-sync/config.json --node-modules ./node_modules --entry ./.design-sync/entry.ts --out ./ds-bundle)",
+      "Bash(npx tailwindcss *)",
+      "Bash(node -)",
+      "Bash(node -e \"const v=require\\('./ds-bundle/.resync-verdict.json'\\);console.log\\('learningsUnmerged:',v.learningsUnmerged\\);console.log\\('validate ok:',JSON.stringify\\(v.validate||v.gates||'\\(see json\\)'\\)\\)\")",
+      "Bash(cd \"/Users/morganbosc/Documents/AI-Workspace/Lorenzo Sito/soundscape-studio-connect/ds-bundle\" && find . -type f | sed 's|^\\\\./||' | grep -v '^\\\\.' | grep -v '^_screenshots/' | sort > ../.design-sync/.cache/upload-manifest.txt && wc -l < ../.design-sync/.cache/upload-manifest.txt && cat ../.design-sync/.cache/upload-manifest.txt)",
+      "Read(//Users/morganbosc/Documents/AI-Workspace/Lorenzo Sito/.design-sync/.cache/**)",
+      "Bash(node .ds-sync/resync.mjs --config .design-sync/config.json --node-modules ./node_modules --entry ./.design-sync/entry.ts --out ./ds-bundle --no-render-check)",
+      "Bash(node -e \"const v=require\\('./ds-bundle/.resync-verdict.json'\\);console.log\\(JSON.stringify\\({upload:v.upload,learnings:v.learningsUnmerged},null,1\\)\\)\")",
+      "Bash(git check-ignore *)"
     ]
   }
 }
