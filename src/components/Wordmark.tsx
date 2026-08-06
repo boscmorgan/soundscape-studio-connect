@@ -1,6 +1,5 @@
-import type { CSSProperties } from 'react';
-
 import { cn } from '@/lib/utils';
+import { useWordmarkWave } from '@/hooks/useWordmarkWave';
 import { site } from '@/config/site';
 
 interface WordmarkProps {
@@ -9,62 +8,49 @@ interface WordmarkProps {
   className?: string;
 }
 
-const LETTERS = [...site.name];
-
-/**
- * Each letter sits one step further along a single sine period spread across
- * the word. The phase is handed to CSS twice:
- *
- *   - as a negative `animation-delay`, so the letters are already spread
- *     across the cycle on the first frame and the wave travels left to right;
- *   - as `--wave-y` / `--wave-r`, the pose that phase corresponds to at t=0,
- *     which is what reduced-motion users see frozen.
- *
- * `-cos` and `sin` mirror the keyframes in src/styles/base.css.
- */
-const letterStyle = (index: number): CSSProperties => {
-  const phase = index / LETTERS.length;
-  const radians = phase * 2 * Math.PI;
-
-  return {
-    animationDelay: `calc(var(--wordmark-wave-duration) * ${(phase - 1).toFixed(4)})`,
-    '--wave-y': (-Math.cos(radians)).toFixed(4),
-    '--wave-r': Math.sin(radians).toFixed(4),
-  } as CSSProperties;
-};
-
 /**
  * The lorenzo1UP wordmark — live type, not artwork.
  *
- * Set in the display face, stroked white with a transparent body, and waving
- * on a loop. Size it by overriding `--wordmark-size` per instance with the
- * arbitrary property `[--wordmark-size:…]`; the stroke, tracking and wave all
- * scale from it.
+ * Set in the display face, stroked white with a transparent body, and running
+ * a continuous wave. Size it by overriding `--wordmark-size` per instance with
+ * the arbitrary property `[--wordmark-size:…]`; stroke, tracking and the whole
+ * wave scale from that one token.
  *
- * The letters are split into spans to be animated individually, so the label
- * is restated on the wrapper — assistive tech reads the word, not ten
- * characters.
+ * There are two copies of the mark here and only ever one of them is visible:
+ *
+ *   - the live type, which decides the layout box, carries every token, and is
+ *     what you see before the texture is ready or on a machine without WebGL;
+ *   - the canvas, which paints that same type read through a displacement
+ *     field (see src/lib/wordmarkWave.ts).
+ *
+ * The wave belongs to the mark rather than to its letters, so nothing here
+ * splits the word up: it is one string, and the field bends it wherever it
+ * happens to cross a glyph. The canvas is `aria-hidden` and the label is
+ * restated on the wrapper, so assistive tech reads the word once.
  */
-export const Wordmark = ({ as: Tag = 'div', className }: WordmarkProps) => (
-  <Tag
-    aria-label={site.name}
-    className={cn('wordmark w-fit max-w-full select-none', className)}
-  >
-    <span
-      aria-hidden="true"
-      className="inline-block whitespace-nowrap"
-      style={{ transform: 'skewX(var(--wordmark-slant))' }}
+export const Wordmark = ({ as: Tag = 'div', className }: WordmarkProps) => {
+  const { typeRef, canvasRef, active } = useWordmarkWave(site.name);
+
+  return (
+    <Tag
+      aria-label={site.name}
+      // Both copies of the mark are aria-hidden, so the name has to come from
+      // the wrapper — and a bare <div> is `generic`, a role that prohibits
+      // naming. Chrome computes the name anyway, but nothing guarantees other
+      // engines will. `img` is also simply what this now is: a rendered image
+      // of the word. An <h1> already takes a name, and must keep its own role.
+      role={Tag === 'div' ? 'img' : undefined}
+      className={cn('wordmark relative w-fit max-w-full select-none', className)}
     >
-      {LETTERS.map((letter, index) => (
-        <span
-          // The mark is a fixed string; index is the letter's identity here.
-          key={`${letter}-${index}`}
-          className="wordmark-letter"
-          style={letterStyle(index)}
-        >
-          {letter}
-        </span>
-      ))}
-    </span>
-  </Tag>
-);
+      <span
+        ref={typeRef}
+        aria-hidden="true"
+        className={cn('wordmark-type', active && 'opacity-0')}
+      >
+        <span className="wordmark-slant">{site.name}</span>
+      </span>
+
+      <canvas ref={canvasRef} aria-hidden="true" className="wordmark-canvas" />
+    </Tag>
+  );
+};

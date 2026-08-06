@@ -64,16 +64,24 @@ responsive variants on top of them.
 
 ### Brand elements
 
-`Wordmark` renders the logo **artwork**, not text — the mark is hand-drawn and
-no font reproduces it. Size it by overriding its width token, never by setting
-`width` directly, so it keeps its aspect ratio:
+`Wordmark` renders the logo as **live type**, set in the display face and
+stroked. Size it by overriding its font-size token, never by setting `width` or
+`height` directly — the stroke, the tracking and the wave are all in `em`, so
+that one token rescales the whole mark:
 
 ```jsx
-<Wordmark className="[--wordmark-width:clamp(11rem,32vw,20rem)]" />
+<Wordmark className="[--wordmark-size:clamp(1.75rem,5vw,3.15rem)]" />
 ```
 
-Pass `as="h1"` on the page that owns the primary heading. `--wordmark-shadow`
-adds a legibility shadow when the mark sits over photography.
+Pass `as="h1"` on the page that owns the primary heading.
+
+The mark animates: it is rasterised to a texture and read through a continuous
+displacement field on a WebGL canvas that overflows its layout box on all four
+sides. Two things follow. Don't wrap it in `overflow-hidden` unless you mean to
+crop the wave, and don't rely on the canvas — with no WebGL, or before the face
+loads, the live type shows through unchanged. Tune the field with the
+`--wordmark-wave-*` tokens; `--wordmark-wave-aberration: 0` gives a clean
+monochrome mark.
 
 `SocialLinks` takes only `className` — the link set comes from the design
 system's own config, so treat it as a fixed block you position.
@@ -99,7 +107,7 @@ Read these before styling; they beat any summary here:
 const { Button, Input, Wordmark } = window.Lorenzo1UP;
 
 <div className="min-h-screen-safe bg-background text-foreground px-[--edge-x] py-[--edge-y]">
-  <Wordmark as="h1" className="mx-auto [--wordmark-width:clamp(11rem,32vw,20rem)]" />
+  <Wordmark as="h1" className="mx-auto [--wordmark-size:clamp(1.75rem,5vw,3.15rem)]" />
 
   <p className="mt-[--space-lg] max-w-[--measure] text-[length:var(--text-lead)] leading-[--leading-body] text-foreground/85">
     Musica elettronica tra future beats, uk garage e drum&amp;bass.

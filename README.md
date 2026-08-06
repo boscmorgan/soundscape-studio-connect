@@ -66,22 +66,60 @@ font-size, which is how the steps in `tokens.css` were derived.
 
 #### The wave
 
-Each letter is its own span riding one shared keyframe loop, `wordmark-wave`.
-A single sine period is spread across the word via a **negative**
-`animation-delay` per letter, so the mark reads as a wave on the very first
-frame rather than starting flat. Vertical travel is `-cos` and tilt is `sin` —
-a quarter period apart, which is what makes the wave travel left to right
-instead of wobbling in place.
+The wave belongs to the **mark**, not to its letters. Nothing splits the word
+up: it is rasterised once, then read through a single continuous displacement
+field, so the distortion cuts through the middle of a glyph as readily as
+between two and stays homogeneous across the whole title.
 
-Under `prefers-reduced-motion` the wave freezes but keeps its shape: the
-component also passes each letter's t=0 pose as `--wave-y` / `--wave-r`, which
-a media query in `styles/base.css` applies as a static `translate` / `rotate`.
-Without it the global reduced-motion rule would park every letter on the same
-keyframe and flatten the mark into a straight line.
+Three files, in the order the pixels move through them:
+
+| File                       | Does                                                |
+| -------------------------- | --------------------------------------------------- |
+| `hooks/useWordmarkWave.ts` | Measures the live copy, reads the tokens, drives it   |
+| `lib/cssValue.ts`          | Token text to numbers — `em` / `rem` / `ms` and back  |
+| `lib/wordmarkRaster.ts`    | Paints the type into an offscreen 2D canvas           |
+| `lib/wordmarkWave.ts`      | One quad, one fragment shader — the field itself      |
+
+The geometry in `wordmarkRaster.ts` and the parsing in `cssValue.ts` are pure
+and covered by `lib/wordmark.test.ts` — they are the parts that fail *quietly*
+(a sign error moves the mark, an unresolved metric erases it), so they are
+tested rather than eyeballed.
+
+The technique is the one from [Codrops' wave-motion effect][codrops]: a
+noise-and-sine field driving a displacement, with the colour channels sampled a
+hair apart. Two differences. It runs on **raw WebGL**, not three.js — this is a
+wordmark, and the library would outweigh the rest of the bundle. And the
+displacement is per **fragment** on a single quad rather than per vertex on a
+subdivided plane, because a 16×16 grid would quantise a wave running through
+letterforms, which is the whole thing this is trying to avoid.
+
+The field is two travelling sines plus drifting simplex noise, over position
+along the word. The two periods are not integer multiples of each other, so
+they drift in and out of phase instead of repeating. Its **slope** does the
+rest of the work: letters squash horizontally where the wave is steepest,
+crests magnify slightly as though leaning toward the viewer, the top of the
+letters trails the bottom through the turn, and the RGB split widens with the
+slope and vanishes at the crests, the way a lens behaves.
+
+`Wordmark` renders two copies and shows exactly one. The live type sets the
+layout box, carries every token, and is what you see before the texture is
+ready, on a machine without WebGL, or if the GL context is lost. The canvas is
+the wave. Because the raster reads the live copy back out through
+`getComputedStyle`, the CSS stays the only description of the mark.
+
+Under `prefers-reduced-motion` the clock stops but the canvas still paints: the
+mark holds the field's shape at t=0 rather than snapping flat. Same when the
+tab is hidden or the mark scrolls out of view — the render loop stops, the last
+frame stands.
 
 Tuning knobs, all in `tokens.css`: `--wordmark-stroke-width`,
-`--wordmark-tracking`, `--wordmark-slant`, `--wordmark-wave-duration`,
-`--wordmark-wave-amplitude`, `--wordmark-wave-tilt`.
+`--wordmark-tracking`, `--wordmark-slant`, then `--wordmark-wave-*` for the
+field — `amplitude` and `sway` for size, `cycles*` for how many swells sit
+across the word, `duration*` / `drift` for speed, `noise` for how organic it
+reads, `depth` and `lean` for the sense of a ribbon rather than a flat wobble,
+and `aberration` for the RGB split (set it to `0` for a clean mono mark).
+
+[codrops]: https://tympanus.net/codrops/2020/03/17/create-a-wave-motion-effect-on-an-image-with-three-js/
 
 ### Hero image
 

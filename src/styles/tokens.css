@@ -150,15 +150,58 @@
     --wordmark-offset-y: clamp(0px, 7vh, 84px);
 
     /*
-     * The wave. Each letter rides one full sine period spread across the
-     * word, so the mark reads as a wave at every instant rather than only
-     * mid-cycle. Amplitude is in em, so the wave scales with the mark. Tilt
-     * trails the rise by a quarter period — that offset is what makes the
-     * wave travel rather than wobble in place.
+     * The wave.
+     *
+     * The mark is not animated letter by letter — it is rasterised once and
+     * then read through a single continuous displacement field, so the
+     * distortion is homogeneous across the whole word and cuts through the
+     * middle of a glyph as readily as between two.
+     *
+     * The field is two travelling sines plus drifting simplex noise. The two
+     * periods are deliberately not integer multiples of each other, so the
+     * combination never repeats exactly. Lengths are in em and therefore
+     * rescale with --wordmark-size; the rest are unitless ratios.
      */
-    --wordmark-wave-duration: 3.6s;
-    --wordmark-wave-amplitude: 0.075em;
-    --wordmark-wave-tilt: 6deg;
+
+    /*
+     * Period of each layer. 4.2 and 6.7 share no factor, so the two sines only
+     * line up again after 67 of the first — a little under five minutes. The
+     * noise layer is longer still, so nobody sees this loop.
+     */
+    --wordmark-wave-duration: 4.2s;
+    --wordmark-wave-duration-2: 6.7s;
+    --wordmark-wave-drift: 10s;
+
+    /* How many swells sit across the word at once. */
+    --wordmark-wave-cycles: 1.25;
+    --wordmark-wave-cycles-2: 2.9;
+    --wordmark-wave-cycles-noise: 1.8;
+
+    /* Vertical travel, and the horizontal squash where the wave is steepest. */
+    --wordmark-wave-amplitude: 0.105em;
+    --wordmark-wave-sway: 0.085em;
+
+    /* Share of the field that comes from noise rather than the sines, 0–1. */
+    --wordmark-wave-noise: 0.34;
+
+    /*
+     * The two cues that read as depth rather than a flat wobble: crests
+     * magnify, as if leaning toward the viewer, and the top of the letters
+     * trails the bottom through the turn.
+     *
+     * These have to climb with the amplitude, not stay put. Travel on its own
+     * just makes the mark bob higher; it is the squash, the magnification and
+     * the lean that make a bigger wave read as a stronger wave.
+     */
+    --wordmark-wave-depth: 0.1;
+    --wordmark-wave-lean: 0.1em;
+
+    /*
+     * RGB split along the direction of travel. Held well below the rest: the
+     * brand is monochrome, so this should read as an edge catching the light,
+     * not as a glitch. Set it to 0 for a clean mono mark.
+     */
+    --wordmark-wave-aberration: 0.009em;
 
     /* Scrim over the portrait so white furniture stays legible. */
     --hero-scrim: linear-gradient(
