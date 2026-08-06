@@ -50,20 +50,6 @@ export const socials: readonly SocialLink[] = [
 ] as const;
 
 /**
- * The wordmark artwork (white, transparent background), trimmed to its ink
- * bounds so layout width equals visible width. Intrinsic ratio ~5.36:1.
- */
-export const wordmarkImage = {
-  src: '/brand/wordmark-1600.png',
-  srcSet: ['/brand/wordmark-800.png 800w', '/brand/wordmark-1600.png 1600w'].join(
-    ', ',
-  ),
-  sizes: '(max-width: 640px) 80vw, 60vw',
-  width: 1600,
-  height: 299,
-} as const;
-
-/**
  * Responsive sources for the full-bleed portrait. Generated from the master
  * file at 900 / 1600 / 2400px wide; `blurDataUri` is a 32px inline placeholder
  * that paints immediately so the page never flashes empty.

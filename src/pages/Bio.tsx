@@ -31,7 +31,7 @@ const Bio = () => {
 
         <main className="mx-auto w-full max-w-5xl">
           <Link to="/" aria-label={bio.back} className="block">
-            <Wordmark className="mx-auto [--wordmark-width:clamp(11rem,32vw,20rem)]" />
+            <Wordmark className="mx-auto [--wordmark-size:clamp(1.75rem,5vw,3.15rem)]" />
           </Link>
 
           <section className="mt-[--space-2xl]">

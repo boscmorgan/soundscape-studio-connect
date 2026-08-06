@@ -5,7 +5,7 @@ import { notFound } from '@/content';
 
 const NotFound = () => (
   <div className="flex h-screen-safe flex-col items-center justify-center gap-[--space-md] bg-background px-[--edge-x] text-center">
-    <Wordmark className="[--wordmark-width:clamp(10rem,30vw,18rem)]" />
+    <Wordmark className="[--wordmark-size:clamp(1.6rem,4.7vw,2.85rem)]" />
     <p className="text-[length:var(--text-heading)] font-bold tracking-[--tracking-tight]">
       {notFound.title}
     </p>

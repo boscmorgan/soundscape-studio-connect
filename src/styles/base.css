@@ -46,6 +46,51 @@
   .marquee-track:hover {
     animation-play-state: paused;
   }
+
+  /*
+   * The wordmark: outline-only type. `-webkit-text-stroke` is the only way to
+   * stroke live text without dropping to SVG, and every current engine ships
+   * it under the prefix. Transparent body, no fill, no shadow.
+   */
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: var(--wordmark-size);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: var(--wordmark-tracking);
+    color: transparent;
+    -webkit-text-stroke: var(--wordmark-stroke-width) var(--wordmark-stroke-color);
+    text-shadow: none;
+  }
+
+  /*
+   * One letter of the wave. The per-letter phase arrives as a negative
+   * `animation-delay` set inline by the component, so the whole word is
+   * already mid-wave on the first frame.
+   */
+  .wordmark-letter {
+    display: inline-block;
+    animation: wordmark-wave var(--wordmark-wave-duration) var(--ease-in-out)
+      infinite;
+    will-change: transform;
+  }
+
+  /*
+   * Reduced motion stills the wave but keeps its shape: the global rule in
+   * @layer base only collapses the duration, which would park every letter on
+   * the same keyframe and flatten the mark into a straight line. `--wave-y` /
+   * `--wave-r` carry each letter's phase, sampled at t=0 by the component.
+   *
+   * This has to sit inside @layer utilities, after the rule it overrides —
+   * Tailwind flattens the layers, so the winner is decided by source order.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    .wordmark-letter {
+      animation: none;
+      translate: 0 calc(var(--wordmark-wave-amplitude) * var(--wave-y));
+      rotate: calc(var(--wordmark-wave-tilt) * var(--wave-r));
+    }
+  }
 }
 
 @keyframes marquee-scroll {
@@ -54,5 +99,26 @@
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+/*
+ * Vertical travel is -cos, tilt is sin: a quarter period apart, so a letter
+ * leans steepest as it crosses the baseline and sits flat at the crest and
+ * trough — the way a point on a real wave behaves.
+ */
+@keyframes wordmark-wave {
+  0%,
+  100% {
+    transform: translateY(calc(var(--wordmark-wave-amplitude) * -1)) rotate(0deg);
+  }
+  25% {
+    transform: translateY(0) rotate(var(--wordmark-wave-tilt));
+  }
+  50% {
+    transform: translateY(var(--wordmark-wave-amplitude)) rotate(0deg);
+  }
+  75% {
+    transform: translateY(0) rotate(calc(var(--wordmark-wave-tilt) * -1));
   }
 }

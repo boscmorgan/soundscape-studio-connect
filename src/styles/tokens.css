@@ -74,12 +74,15 @@
     /* 3. Typography                                                     */
     /* ---------------------------------------------------------------- */
 
-    /*
-     * The brand voice is carried by the wordmark artwork, so the site needs
-     * only one text face. Swap this to change every string on the site.
-     */
+    /* Everything the site says, said in one face. */
     --font-body: 'Helvetica Neue', Helvetica, system-ui, -apple-system,
       'Segoe UI', sans-serif;
+
+    /*
+     * The brand voice: used by the wordmark and nothing else. Declared in
+     * src/styles/fonts.css.
+     */
+    --font-display: 'Titan One', 'Arial Black', 'Helvetica Neue', sans-serif;
 
     /* Fluid steps: clamp(min, preferred, max) — no breakpoint jumps. */
     --text-nav: clamp(0.75rem, 0.68rem + 0.35vw, 0.9rem);
@@ -125,10 +128,20 @@
     /* ---------------------------------------------------------------- */
 
     /*
-     * Wordmark artwork is sized by width; height follows its 5.36:1 ratio.
-     * Per-instance overrides use [--wordmark-width:…].
+     * The wordmark is type, not artwork: it is sized by font-size and its
+     * width follows. "lorenzo1UP" in Titan One measures ~6.3× its font-size,
+     * which is how these steps were derived from the old artwork widths.
+     * Per-instance overrides use [--wordmark-size:…].
      */
-    --wordmark-width: clamp(17rem, 62vw, 52rem);
+    --wordmark-size: clamp(2.7rem, 9.8vw, 8.2rem);
+    --wordmark-tracking: 0.02em;
+
+    /* Outline only — transparent body, no fill, no shadow. */
+    --wordmark-stroke-width: 0.038em;
+    --wordmark-stroke-color: hsl(var(--foreground));
+
+    /* The mark's italic lean, matching the original artwork. */
+    --wordmark-slant: -7deg;
 
     /*
      * Nudge below dead-centre on the home page so the mark crosses the
@@ -136,8 +149,16 @@
      */
     --wordmark-offset-y: clamp(0px, 7vh, 84px);
 
-    /* Keeps the white mark legible over the lighter areas of the portrait. */
-    --wordmark-shadow: drop-shadow(0 2px 18px hsl(var(--ink-900) / 0.45));
+    /*
+     * The wave. Each letter rides one full sine period spread across the
+     * word, so the mark reads as a wave at every instant rather than only
+     * mid-cycle. Amplitude is in em, so the wave scales with the mark. Tilt
+     * trails the rise by a quarter period — that offset is what makes the
+     * wave travel rather than wobble in place.
+     */
+    --wordmark-wave-duration: 3.6s;
+    --wordmark-wave-amplitude: 0.075em;
+    --wordmark-wave-tilt: 6deg;
 
     /* Scrim over the portrait so white furniture stays legible. */
     --hero-scrim: linear-gradient(

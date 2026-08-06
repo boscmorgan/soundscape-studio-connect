@@ -52,29 +52,36 @@ Retuning the identity means editing that one file.
 
 ### Wordmark
 
-The wordmark is the supplied artwork (`public/brand/wordmark-*.png`), not type —
-it is hand-drawn and cannot be reproduced with a font. `public/brand/` holds
-800 / 1600px white PNGs trimmed to their ink bounds, so the layout box equals
-the visible mark (intrinsic ratio ~5.36:1).
+The wordmark is **live type**, not artwork. `Wordmark` sets `site.name` in the
+display face (Titan One, self-hosted from `public/fonts/`, SIL OFL 1.1) as a
+white outline with a transparent body — `-webkit-text-stroke` plus
+`color: transparent`, no fill and no shadow.
 
-It is sized by **width** via `--wordmark-width`; height follows the aspect ratio,
-so it can never distort. Per-instance overrides use Tailwind arbitrary
-properties, e.g. `[--wordmark-width:clamp(11rem,32vw,20rem)]`. Two more knobs:
-`--wordmark-offset-y` (home only — drops the mark below the subject's face) and
-`--wordmark-shadow` (legibility over lighter parts of the photo).
+It is sized by **font-size** via `--wordmark-size`; the stroke, tracking and
+wave amplitude are all in `em`, so overriding that one token rescales the whole
+mark. Per-instance overrides use Tailwind arbitrary properties, e.g.
+`[--wordmark-size:clamp(1.75rem,5vw,3.15rem)]`. "lorenzo1UP" measures ~6.3× its
+font-size, which is how the steps in `tokens.css` were derived.
+`--wordmark-offset-y` (home only) drops the mark below the subject's face.
 
-To regenerate from a new master, trim the transparent margins first:
+#### The wave
 
-```python
-from PIL import Image
-src = Image.open("Logo (White).png").convert("RGBA")
-t = src.crop(src.getbbox())
-for w in (1600, 800):
-    t.resize((w, round(t.height * w / t.width)), Image.LANCZOS) \
-     .save(f"public/brand/wordmark-{w}.png", optimize=True)
-```
+Each letter is its own span riding one shared keyframe loop, `wordmark-wave`.
+A single sine period is spread across the word via a **negative**
+`animation-delay` per letter, so the mark reads as a wave on the very first
+frame rather than starting flat. Vertical travel is `-cos` and tilt is `sin` —
+a quarter period apart, which is what makes the wave travel left to right
+instead of wobbling in place.
 
-Update `wordmarkImage` in `config/site.ts` if the aspect ratio changes.
+Under `prefers-reduced-motion` the wave freezes but keeps its shape: the
+component also passes each letter's t=0 pose as `--wave-y` / `--wave-r`, which
+a media query in `styles/base.css` applies as a static `translate` / `rotate`.
+Without it the global reduced-motion rule would park every letter on the same
+keyframe and flatten the mark into a straight line.
+
+Tuning knobs, all in `tokens.css`: `--wordmark-stroke-width`,
+`--wordmark-tracking`, `--wordmark-slant`, `--wordmark-wave-duration`,
+`--wordmark-wave-amplitude`, `--wordmark-wave-tilt`.
 
 ### Hero image
 
