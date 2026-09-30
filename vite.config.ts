@@ -2,12 +2,14 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
+import { staticContent } from './build/staticContent';
+
 export default defineConfig({
   server: {
     host: '::',
     port: 8080,
   },
-  plugins: [react()],
+  plugins: [react(), staticContent()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

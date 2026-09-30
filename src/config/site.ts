@@ -10,6 +10,8 @@ export const site = {
   locale: 'it-IT',
   lang: 'it',
   email: 'loe@loelashmusic.com',
+  /** Shown in the Bio footer so Spotify for Artists can verify team access. */
+  artistEmail: 'lorenzolucchetti@outlook.com',
 } as const;
 
 /**

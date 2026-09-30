@@ -3,7 +3,7 @@
  * language switch, so copy is imported directly rather than keyed by locale.
  */
 
-import { site } from '@/config/site';
+import { site } from '../config/site';
 
 export const nav = {
   bio: 'Bio',
@@ -37,6 +37,8 @@ export const bio = {
   brandsTitle: 'Collaborazioni',
   testimonialsTitle: 'Recensioni',
   back: 'Indietro',
+  identity: `${site.legalName} a.k.a. ${site.name}`,
+  artistEmailNote: 'Email ufficiale dell\'artista (verifica team Spotify for Artists)',
 } as const;
 
 export const contact = {

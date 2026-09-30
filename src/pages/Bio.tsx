@@ -8,6 +8,7 @@ import { SocialLinks } from '@/components/SocialLinks';
 import { Testimonials } from '@/components/Testimonials';
 import { Wordmark } from '@/components/Wordmark';
 import { useSeo } from '@/hooks/useSeo';
+import { site } from '@/config/site';
 import { bio } from '@/content';
 
 /**
@@ -60,8 +61,17 @@ const Bio = () => {
           </section>
         </main>
 
-        <footer className="mt-[--space-2xl] flex justify-center pb-[--space-lg]">
+        <footer className="mt-[--space-2xl] flex flex-col items-center gap-[--space-md] pb-[--space-lg] text-center">
           <SocialLinks />
+          <address className="not-italic text-[length:var(--text-caption)] leading-[--leading-body] text-foreground/60">
+            <p className="font-bold text-foreground/85">{bio.identity}</p>
+            <p>
+              <a href={`mailto:${site.artistEmail}`} className="underline underline-offset-4 hover:text-foreground">
+                {site.artistEmail}
+              </a>
+            </p>
+            <p className="text-foreground/50">{bio.artistEmailNote}</p>
+          </address>
         </footer>
       </div>
 
