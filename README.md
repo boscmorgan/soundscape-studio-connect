@@ -123,16 +123,18 @@ and `aberration` for the RGB split (set it to `0` for a clean mono mark).
 
 ### Hero image
 
-`public/hero/` holds 900 / 1600 / 2400px JPEGs generated from the master photo,
+`public/hero/` holds 900 / 1600px JPEGs plus a full-size one generated from the master photo,
 served via `srcset`. `index.html` preloads the 1600px variant, and `HeroImage`
 cross-fades from an inline 32px blur placeholder so the page never flashes black.
 
 To regenerate from a new master:
 
 ```sh
-for w in 900 1600 2400; do
-  sips -Z $w -s format jpeg -s formatOptions 70 master.jpg --out public/hero/hero-$w.jpg
+for w in 900 1600; do
+  sips -Z $w -s format jpeg -s formatOptions 70 master.png --out public/hero/hero-$w.jpg
 done
+# Full size, never upscaled; name it after the master's width (currently 1672).
+sips -s format jpeg -s formatOptions 70 master.png --out public/hero/hero-1672.jpg
 ```
 
 ## Newsletter — not yet live

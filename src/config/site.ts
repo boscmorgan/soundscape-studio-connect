@@ -53,17 +53,17 @@ export const socials: readonly SocialLink[] = [
 
 /**
  * Responsive sources for the full-bleed portrait. Generated from the master
- * file at 900 / 1600 / 2400px wide; `blurDataUri` is a 32px inline placeholder
- * that paints immediately so the page never flashes empty.
+ * file at 900 / 1600px wide plus the 1672px original; `blurDataUri` is a 32px
+ * inline placeholder that paints immediately so the page never flashes empty.
  */
 export const heroImage = {
   src: '/hero/hero-1600.jpg',
   srcSet: [
     '/hero/hero-900.jpg 900w',
     '/hero/hero-1600.jpg 1600w',
-    '/hero/hero-2400.jpg 2400w',
+    '/hero/hero-1672.jpg 1672w',
   ].join(', '),
   sizes: '100vw',
-  width: 2400,
-  height: 1600,
+  width: 1672,
+  height: 941,
 } as const;
