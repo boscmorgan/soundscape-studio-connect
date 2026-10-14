@@ -15,6 +15,15 @@ export const site = {
 } as const;
 
 /**
+ * Brevo's hosted signup form for the mailing list (the "Iscriviti" field on the
+ * home page). The site keeps its own input and posts to this endpoint, so the
+ * form looks like the rest of the page instead of Brevo's iframe. Safe to ship:
+ * it is the public URL Brevo's own embed code posts to, not an API key.
+ */
+export const newsletterFormUrl =
+  'https://586d067f.sibforms.com/serve/MUIFAPjjA8nZAsI9EF45Dz6NaewrZ8w72dZuS0ofM26hCT_yZMUJflB3n7hPO5OUsyuwAyl_MAOmti9z8b0TXFLVDpNa3W7s1fCsaElCYU8P2B7Jia8aQzUyp4LmLZ-t0uQJ0k_L5wKV01cqIPMDw0nlWkT0JKpIlTdshDCsbXtQpCvRQBlAHRpiV7gCZpKBBYafLYi9nYBQY1L2wQ==';
+
+/**
  * Where the "Music" nav item points. External by design — the catalogue lives
  * on streaming platforms, not on this site.
  */

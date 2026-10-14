@@ -34,3 +34,14 @@ describe('isValidEmail', () => {
     (value) => expect(isValidEmail(value)).toBe(false),
   );
 });
+
+describe('brevoFormData', () => {
+  it('sends the trimmed address with an empty honeypot', async () => {
+    const { brevoFormData } = await import('./newsletter');
+    const data = brevoFormData('  lorenzo@example.com ');
+
+    expect(data.get('EMAIL')).toBe('lorenzo@example.com');
+    expect(data.get('email_address_check')).toBe('');
+    expect(data.get('locale')).toBe('it');
+  });
+});

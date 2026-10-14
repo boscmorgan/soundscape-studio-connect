@@ -1,27 +1,23 @@
 /**
- * Newsletter subscription seam.
+ * Newsletter subscription, through Brevo's hosted form.
  *
- * ── NOT YET WIRED TO BREVO ──────────────────────────────────────────────
- * The UI is complete; only this function needs implementing. Subscribing
- * requires a Brevo API key, which must NOT ship in client-side bundles
- * (anything in `import.meta.env` is readable by every visitor). So the real
- * implementation needs one of:
+ * The page keeps its own minimal input (see NewsletterForm) and sends the
+ * address to the endpoint Brevo's embed code posts to, so no API key ever
+ * reaches the browser. The form itself (list, double opt-in, confirmation
+ * email) is configured in Brevo, not here.
  *
- *   a) A serverless function (e.g. /api/subscribe) holding BREVO_API_KEY,
- *      which this function POSTs to. Recommended.
- *   b) Brevo's own hosted form endpoint, which is safe to call from the
- *      browser — swap this for a plain <form action=…> POST.
- *
- * Reference: POST https://api.brevo.com/v3/contacts
- *   headers: { 'api-key': <server-side key>, 'content-type': 'application/json' }
- *   body:    { email, listIds: [<listId>], updateEnabled: true }
- * ────────────────────────────────────────────────────────────────────────
+ * Brevo answers `?isAjax=1` posts with JSON (`{ success: true }` on success).
+ * If the browser cannot read the reply (a CORS refusal, say), the address is
+ * sent again as a plain form post, which Brevo accepts the same way; a second
+ * submission of the same address is harmless.
  */
 
-export class NewsletterNotConfiguredError extends Error {
-  constructor() {
-    super('Newsletter provider is not configured yet.');
-    this.name = 'NewsletterNotConfiguredError';
+import { newsletterFormUrl } from '@/config/site';
+
+export class NewsletterError extends Error {
+  constructor(message = 'Newsletter signup failed.') {
+    super(message);
+    this.name = 'NewsletterError';
   }
 }
 
@@ -30,8 +26,35 @@ export function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim());
 }
 
+/** The fields Brevo's own form sends. `email_address_check` is its honeypot. */
+export function brevoFormData(email: string): FormData {
+  const data = new FormData();
+  data.append('EMAIL', email.trim());
+  data.append('email_address_check', '');
+  data.append('locale', 'it');
+  data.append('html_type', 'simple');
+  return data;
+}
+
 export async function subscribe(email: string): Promise<void> {
-  // TODO(brevo): replace with a call to the subscribe endpoint described above.
-  void email;
-  throw new NewsletterNotConfiguredError();
+  let response: Response;
+  try {
+    response = await fetch(`${newsletterFormUrl}?isAjax=1`, {
+      method: 'POST',
+      body: brevoFormData(email),
+    });
+  } catch {
+    // The reply could not be read (CORS or network). Post as a plain form;
+    // the response is opaque, so a network failure here is the only error.
+    await fetch(newsletterFormUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: brevoFormData(email),
+    });
+    return;
+  }
+
+  if (!response.ok) throw new NewsletterError(`Brevo replied ${response.status}.`);
+  const reply = (await response.json().catch(() => null)) as { success?: boolean } | null;
+  if (reply && reply.success === false) throw new NewsletterError();
 }

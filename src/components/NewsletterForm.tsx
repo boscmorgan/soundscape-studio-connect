@@ -15,7 +15,7 @@ const { newsletter: t } = home;
 
 /**
  * Minimal underline input for mailing-list signup.
- * Submission is stubbed until Brevo is wired — see lib/newsletter.ts.
+ * Submits to Brevo's hosted form — see lib/newsletter.ts.
  */
 export const NewsletterForm = ({ className }: NewsletterFormProps) => {
   const inputId = useId();
